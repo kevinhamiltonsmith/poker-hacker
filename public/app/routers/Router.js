@@ -1,11 +1,13 @@
 var PokerHacker = Backbone.Router.extend({
 
   routes: {
-    "": "index",
+    "": "index"
   },
 
   initialize: function() {
-    this.users = new Users();
+    this.sessions = new Sessions(testData);
+    this.sessionsView = new SessionsView({collection: this.sessions});
+    $('body').append(this.sessionsView.render());
   },
 
   start: function() {
