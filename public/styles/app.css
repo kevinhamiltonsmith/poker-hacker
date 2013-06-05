@@ -1,3 +1,32 @@
-body {
-  margin: 0;
+.sessions-row {
+}
+.sessions-row div div {
+  font-weight: bold;
+}
+.sessions-profit {
+  font-size:1.4em;
+}
+.sessions-stakes {
+  margin-left: 5px;
+}
+.session-win {
+  color: green;
+}
+.session-loss {
+  color: red;
+}
+.sessions-profit, .sessions-game, .sessions-stakes, .sessions-location, .sessions-time, .sessions-date {
+  float: left;
+  margin-left: 5px;
+}
+.session-top, .session-bottom{
+  padding-left: 15px;
+}
+.session-top {
+  border-top: 2px solid #000;
+  padding-top: 10px;
+}
+.session-bottom {
+  padding-top: 5px;
+  padding-bottom: 10px;
 }

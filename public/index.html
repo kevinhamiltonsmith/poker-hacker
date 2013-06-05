@@ -1,6 +1,7 @@
 <html>
   <head>
     <title>Poker Hacker</title>
+    <link href="lib/gumby/css/gumby.css" rel="stylesheet" type="text/css" media="screen">
     <link href="styles/app.css" rel="stylesheet" type="text/css" media="screen">
   </head>
   <body>
@@ -21,10 +22,8 @@
     <script src="app/routers/Router.js"></script>
 
     <script>
-      $(function(){
-        window.pokerHacker = new PokerHacker();
-        pokerHacker.start();
-      });
+      var pokerHacker = new PokerHacker();
+      pokerHacker.start();
     </script>
   </body>
 </html>
