@@ -15,9 +15,12 @@
 .session-loss {
   color: red;
 }
-.sessions-profit, .sessions-game, .sessions-stakes, .sessions-location, .sessions-time, .sessions-date {
+.sessions-profit, .sessions-game, .sessions-stakes, .sessions-location {
   float: left;
   margin-left: 5px;
+}
+.sessions-time, .sessions-date {
+  float: right;
 }
 .session-top, .session-bottom{
   padding-left: 15px;
