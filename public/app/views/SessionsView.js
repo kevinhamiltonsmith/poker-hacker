@@ -23,7 +23,8 @@ var SessionsView = Backbone.View.extend({
 
   events: {
     "click .sessions-row" : function(event){
-      console.log($(event.currentTarget).data("session-id"));
+      var id = $(event.currentTarget).data("session-id");
+      this.sessionNav(id);
     }
   },
 
@@ -40,7 +41,7 @@ var SessionsView = Backbone.View.extend({
     );
   },
 
-  sessionNav: function(sessionId) {
-    pokerHacker.navigate('session/', true);
+  sessionNav: function(id) {
+    pokerHacker.navigate('session/' + id, true);
   }
 });

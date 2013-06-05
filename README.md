@@ -1,5 +1,5 @@
 <h1>Poker Hacker</h1>
-==================
+
 <a href="http://poker-hacker.herokuapp.com/">Live Demo</a> (coming soon)
 
 ==================

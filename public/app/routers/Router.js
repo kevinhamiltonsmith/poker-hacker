@@ -2,11 +2,12 @@ var PokerHacker = Backbone.Router.extend({
 
   routes: {
     "": "index",
-    "sessions": "sessions",
-    "session": "session"
+    "sessions": "sessionsNav",
+    "session/:id": "sessionNav"
   },
 
   initialize: function() {
+    this.sessions = new Sessions(testData);
   },
 
   start: function() {
@@ -16,15 +17,13 @@ var PokerHacker = Backbone.Router.extend({
   index: function() {
   },
 
-  sessions: function() {
-    this.sessions = new Sessions(testData);
+  sessionsNav: function() {
     this.sessionsView = new SessionsView({collection: this.sessions});
     $('body').empty().append(this.sessionsView.render());
   },
 
-  session: function() {
-    console.log("inside session");
-    this.session = new Session();
+  sessionNav: function(id) {
+    this.session = new Session(this.sessions.findWhere({sessionId: id}).attributes);
     this.sessionView = new SessionView({model: this.session});
     $('body').empty().append(this.sessionView.render());
   }
