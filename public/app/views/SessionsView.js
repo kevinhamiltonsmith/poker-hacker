@@ -3,7 +3,7 @@ var SessionsView = Backbone.View.extend({
   className: 'sessions',
 
   template: _.template(''+
-    '<div class="sessions-row">' +
+    '<div data-session-id=<%= sessionId %> class="sessions-row">' +
       '<div class="row">' +
         '<div class="centered six columns session-top">' +
           '<div class="sessions-profit <%= profitClass %>"><%= parenProfit %></div>'+
@@ -21,6 +21,12 @@ var SessionsView = Backbone.View.extend({
     '</div>'
   ),
 
+  events: {
+    "click .sessions-row" : function(event){
+      console.log($(event.currentTarget).data("session-id"));
+    }
+  },
+
   initialize: function() {
     this.render();
   },
@@ -32,5 +38,9 @@ var SessionsView = Backbone.View.extend({
         return self.$el.append(self.template(session.attributes));
       })
     );
+  },
+
+  sessionNav: function(sessionId) {
+    pokerHacker.navigate('session/', true);
   }
 });
