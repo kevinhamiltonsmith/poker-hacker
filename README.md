@@ -1,6 +1,7 @@
-Poker Hacker
+<h1>Poker Hacker</h1>
+==================
+<a href="http://poker-hacker.herokuapp.com/">Live Demo</a> (coming soon)
 
-Poker Session Tracking
 ==================
 This is a work in progress.
 
