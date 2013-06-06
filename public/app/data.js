@@ -20,7 +20,7 @@ var testData = [
     "tokes":null,
     "netProfit":99.00,
     "grossProfit":99.00,
-    "note":""
+    "note":"This is a super long test note about not much at all. Let's see what happens."
   },
   {
     "sessionId":"2",

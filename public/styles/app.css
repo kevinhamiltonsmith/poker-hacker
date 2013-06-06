@@ -1,4 +1,6 @@
-.sessions-row {
+.sessions h3 {
+  margin: 0 auto;
+  text-align: center;
 }
 .sessions-row div div {
   font-weight: bold;
@@ -32,4 +34,26 @@
 .session-bottom {
   padding-top: 5px;
   padding-bottom: 10px;
+}
+.session h3 {
+  text-align: center;
+}
+.session-detail {
+  margin: 10px auto;
+}
+.session-detail td {
+  padding: 10px;
+  min-width: 180px;
+}
+.session-detail tr {
+  border: 2px solid #000;
+}
+.data-column {
+  text-align: right;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+tr .session-note{
+  text-align: left;
+  font-weight: normal;
 }

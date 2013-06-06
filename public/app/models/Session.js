@@ -20,6 +20,6 @@ var Session = Backbone.Model.extend({
 
     var time = this.get('sessionLength');
     time = time.split('').slice(0, -3).join('');
-    this.set({sessionLength: time});
+    this.set({sessionLengthShort: time});
   }
 });

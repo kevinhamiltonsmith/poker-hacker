@@ -9,7 +9,7 @@ var SessionsView = Backbone.View.extend({
           '<div class="sessions-profit <%= profitClass %>"><%= parenProfit %></div>'+
           '<div class="sessions-game"><%= game %></div>' +
           '<div class="sessions-stakes"><%= stakes %></div>' +
-          '<div class="sessions-time"><%= sessionLength %></div>'+
+          '<div class="sessions-time"><%= sessionLengthShort %></div>'+
         '</div>' +
       '</div>' +
       '<div class="row">' +
@@ -34,6 +34,7 @@ var SessionsView = Backbone.View.extend({
 
   render: function(){
     var self = this;
+    this.$el.append('<h3>Cash Game Session History</h3>');
     return this.$el.append(
       this.collection.map(function(session){
         return self.$el.append(self.template(session.attributes));
