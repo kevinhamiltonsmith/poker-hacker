@@ -5,15 +5,12 @@ var SessionsView = Backbone.View.extend({
   template: _.template(''+
     '<div data-session-id=<%= sessionId %> class="sessions-row">' +
       '<div class="row">' +
-        '<div class="centered six columns session-top">' +
+        '<div class="centered six columns single-session-row">' +
           '<div class="sessions-profit <%= profitClass %>"><%= parenProfit %></div>'+
           '<div class="sessions-game"><%= game %></div>' +
           '<div class="sessions-stakes"><%= stakes %></div>' +
           '<div class="sessions-time"><%= sessionLengthShort %></div>'+
-        '</div>' +
-      '</div>' +
-      '<div class="row">' +
-        '<div class="centered six columns session-bottom">' +
+          '<div class="clearfix"></div>' +
           '<div class="sessions-location"><%= location %></div>'+
           '<div class="sessions-date"><%= date %></div>'+
         '</div>' +
@@ -29,7 +26,6 @@ var SessionsView = Backbone.View.extend({
   },
 
   initialize: function() {
-    this.render();
   },
 
   render: function(){

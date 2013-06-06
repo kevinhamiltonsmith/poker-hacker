@@ -2,6 +2,10 @@
   margin: 0 auto;
   text-align: center;
 }
+.single-session-row {
+  border-top: 1px solid #000;
+  padding: 8px;
+}
 .sessions-row div div {
   font-weight: bold;
 }
@@ -24,16 +28,8 @@
 .sessions-time, .sessions-date {
   float: right;
 }
-.session-top, .session-bottom{
-  padding-left: 15px;
-}
-.session-top {
-  border-top: 2px solid #000;
-  padding-top: 10px;
-}
-.session-bottom {
+.sessions-location, .sessions-date{
   padding-top: 5px;
-  padding-bottom: 10px;
 }
 .session h3 {
   text-align: center;
@@ -56,4 +52,12 @@
 tr .session-note{
   text-align: left;
   font-weight: normal;
+}
+
+.clearfix:after {
+   content: ".";
+   visibility: hidden;
+   display: block;
+   height: 0;
+   clear: both;
 }
