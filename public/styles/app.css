@@ -1,3 +1,18 @@
+/*
+* Global styles
+*/
+.clearfix:after {
+   content: ".";
+   visibility: hidden;
+   display: block;
+   height: 0;
+   clear: both;
+}
+
+
+/*
+* SessionsView list of all sessions
+*/
 .sessions h3 {
   margin: 0 auto;
   text-align: center;
@@ -31,17 +46,29 @@
 .sessions-location, .sessions-date{
   padding-top: 5px;
 }
-.session h3 {
-  text-align: center;
+.right-arrow {
+  margin-top: 25px;
+  margin-left: -10px;
+  font-size: 1.5em;
+  cursor: pointer;
 }
-.session-detail {
+
+/*
+* SessionView for a detailed single session
+*/
+.sesh h3 {
+  text-align: center;
+  border-bottom: 1px solid #666;
+  width: 100%;
+}
+.sesh-detail {
   margin: 10px auto;
 }
-.session-detail td {
+.sesh-detail td {
   padding: 10px;
   min-width: 180px;
 }
-.session-detail tr {
+.sesh-detail tr {
   border: 2px solid #000;
 }
 .data-column {
@@ -53,11 +80,18 @@ tr .session-note{
   text-align: left;
   font-weight: normal;
 }
-
-.clearfix:after {
-   content: ".";
-   visibility: hidden;
-   display: block;
-   height: 0;
-   clear: both;
+.sesh-nav {
+  margin-top: 10px;
+}
+.all-sesh-nav {
+  text-align: center;
+}
+.prev-sesh-nav {
+  text-align: left;
+}
+.next-sesh-nav {
+  text-align: right;
+}
+.button-bottom {
+  margin-top: 13px;
 }

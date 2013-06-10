@@ -3,23 +3,26 @@ var SessionsView = Backbone.View.extend({
   className: 'sessions',
 
   template: _.template(''+
-    '<div data-session-id=<%= sessionId %> class="sessions-row">' +
+    '<div class="sessions-row">' +
       '<div class="row">' +
         '<div class="centered six columns single-session-row">' +
           '<div class="sessions-profit <%= profitClass %>"><%= parenProfit %></div>'+
-          '<div class="sessions-game"><%= game %></div>' +
-          '<div class="sessions-stakes"><%= stakes %></div>' +
+          '<div class="sessions-location"><%= location %></div>'+
           '<div class="sessions-time"><%= sessionLengthShort %></div>'+
           '<div class="clearfix"></div>' +
-          '<div class="sessions-location"><%= location %></div>'+
+          '<div class="sessions-game"><%= game %></div>' +
+          '<div class="sessions-stakes"><%= stakes %></div>' +
           '<div class="sessions-date"><%= date %></div>'+
+        '</div>' +
+        '<div data-session-id=<%= sessionId %> class="one column more-detail">' +
+          '<div class="right-arrow">></div>' +
         '</div>' +
       '</div>' +
     '</div>'
   ),
 
   events: {
-    "click .sessions-row" : function(event){
+    "click .more-detail" : function(event){
       var id = $(event.currentTarget).data("session-id");
       this.sessionNav(id);
     }

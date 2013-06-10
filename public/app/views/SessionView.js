@@ -1,13 +1,24 @@
 var SessionView = Backbone.View.extend({
 
-  className: 'session',
+  className: 'sesh',
 
   template: _.template(''+
     '<div data-session-id=<%= sessionId %> class="session-row">' +
       '<div class="row">' +
         '<div class="centered six columns">' +
           '<h3>Cash Game Session Detail</h3>' +
-          '<table class="session-detail">' +
+          '<div class="row sesh-nav">' +
+            '<div class="four columns button-bottom prev-sesh-nav">' +
+              '<button class="btn small primary icon-left metro">Prev Session</button>' +
+            '</div>' +
+            '<div class="four columns all-sesh-nav">' +
+              '<button class="btn medium primary metro">All Sessions</button>' +
+            '</div>' +
+            '<div class="four columns button-bottom next-sesh-nav">' +
+              '<button class="btn small primary icon-right metro">Next Session</button>' +
+            '</div>' +
+          '</div>' +
+          '<table class="sesh-detail">' +
             '<tr><td>Location</td><td class="data-column"><%= location %></td></tr>' +
             '<tr><td>Stakes</td><td class="data-column"><%= stakes %></td></tr>' +
             '<tr><td>Game</td><td class="data-column"><%= game %></td></tr>' +
@@ -27,6 +38,14 @@ var SessionView = Backbone.View.extend({
       '</div>' +
     '</div>'
   ),
+
+  events: {
+    "click .all-sesh-nav button" : function(event){
+      console.log('all click')
+      // var id = $(event.currentTarget).data("session-id");
+      // this.sessionNav(id);
+    }
+  },
 
   initialize: function() {
     this.render();
