@@ -7,17 +7,17 @@ var SessionView = Backbone.View.extend({
       '<div class="row">' +
         '<div class="centered six columns">' +
           '<h3>Cash Game Session Detail</h3>' +
-          '<div class="row sesh-nav">' +
-            '<div class="four columns button-bottom prev-sesh-nav">' +
-              '<button class="btn small primary icon-left metro">Prev Session</button>' +
-            '</div>' +
-            '<div class="four columns all-sesh-nav">' +
-              '<button class="btn medium primary metro">All Sessions</button>' +
-            '</div>' +
-            '<div class="four columns button-bottom next-sesh-nav">' +
-              '<button class="btn small primary icon-right metro">Next Session</button>' +
-            '</div>' +
-          '</div>' +
+          '<ul class="three_up tiles sesh-nav">' +
+            '<li class="button-bottom prev-sesh-nav">' +
+              '<div class="btn small info metro"><a href="#">Prev Session</a></div>' +
+            '</li>' +
+            '<li class="button-bottom all-sesh-nav">' +
+              '<div class="btn small info metro"><a href="#">All Sessions</a></div>' +
+            '</li>' +
+            '<li class="button-bottom next-sesh-nav">' +
+              '<div class="btn small info metro"><a href="#">Next Session</a></div>' +
+            '</li>' +
+          '</ul>' +
           '<table class="sesh-detail">' +
             '<tr><td>Location</td><td class="data-column"><%= location %></td></tr>' +
             '<tr><td>Stakes</td><td class="data-column"><%= stakes %></td></tr>' +
@@ -40,11 +40,22 @@ var SessionView = Backbone.View.extend({
   ),
 
   events: {
-    "click .all-sesh-nav button" : function(event){
+    "click .prev-sesh-nav a" : function(e){
+      console.log('prev click')
+      e.preventDefault();
+    },
+
+    "click .all-sesh-nav a" : function(e){
       console.log('all click')
-      // var id = $(event.currentTarget).data("session-id");
+      e.preventDefault();
+      // var id = $(e.currentTarget).data("session-id");
       // this.sessionNav(id);
-    }
+    },
+
+    "click .next-sesh-nav a" : function(e){
+      console.log('next click')
+      e.preventDefault();
+    },
   },
 
   initialize: function() {
