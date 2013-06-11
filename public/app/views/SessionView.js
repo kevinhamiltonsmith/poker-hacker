@@ -42,7 +42,8 @@ var SessionView = Backbone.View.extend({
   events: {
     "click .prev-sesh-nav a" : function(e){
       e.preventDefault();
-      //TODO: wire this up
+      var seshId = Number(this.model.get('sessionId')) - 1;
+      this.sessionNav(seshId);
     },
 
     "click .all-sesh-nav a" : function(e){
@@ -52,7 +53,8 @@ var SessionView = Backbone.View.extend({
 
     "click .next-sesh-nav a" : function(e){
       e.preventDefault();
-      //TODO: wire this up
+      var seshId = Number(this.model.get('sessionId')) + 1;
+      this.sessionNav(seshId);
     },
   },
 
