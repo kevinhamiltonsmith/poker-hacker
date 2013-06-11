@@ -19,6 +19,7 @@ var SessionView = Backbone.View.extend({
             '</li>' +
           '</ul>' +
           '<table class="sesh-detail">' +
+            '<tr><td>Session Number</td><td class="data-column"><%= sessionId %></td></tr>' +
             '<tr><td>Location</td><td class="data-column"><%= location %></td></tr>' +
             '<tr><td>Stakes</td><td class="data-column"><%= stakes %></td></tr>' +
             '<tr><td>Game</td><td class="data-column"><%= game %></td></tr>' +
