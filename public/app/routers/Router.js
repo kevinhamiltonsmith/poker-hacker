@@ -2,7 +2,7 @@ var PokerHacker = Backbone.Router.extend({
 
   routes: {
     "": "index",
-    "sessions": "sessionsNav",
+    "session/all": "sessionsNav",
     "session/:id": "sessionNav"
   },
 

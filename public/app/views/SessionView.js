@@ -41,20 +41,18 @@ var SessionView = Backbone.View.extend({
 
   events: {
     "click .prev-sesh-nav a" : function(e){
-      console.log('prev click')
       e.preventDefault();
+      //TODO: wire this up
     },
 
     "click .all-sesh-nav a" : function(e){
-      console.log('all click')
       e.preventDefault();
-      // var id = $(e.currentTarget).data("session-id");
-      // this.sessionNav(id);
+      this.sessionNav("all");
     },
 
     "click .next-sesh-nav a" : function(e){
-      console.log('next click')
       e.preventDefault();
+      //TODO: wire this up
     },
   },
 
@@ -64,5 +62,9 @@ var SessionView = Backbone.View.extend({
 
   render: function(){
     return this.$el.html(this.template(this.model.attributes));
+  },
+
+  sessionNav: function(id) {
+    pokerHacker.navigate('session/' + id, true);
   }
 });
