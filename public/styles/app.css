@@ -46,9 +46,17 @@
 .sessions-location, .sessions-date{
   padding-top: 5px;
 }
+.sessions-data {
+  float: left;
+  width: 94%
+}
+.more-detail {
+  float: left;
+  width: 6%;
+}
 .right-arrow {
-  margin-top: 25px;
-  margin-left: -10px;
+  margin-top: 50%;
+  margin-left: 50%;
   font-size: 1.5em;
   cursor: pointer;
 }
