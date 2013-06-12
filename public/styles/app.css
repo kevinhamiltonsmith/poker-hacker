@@ -95,3 +95,19 @@ tr .session-note{
 .button-bottom {
   margin-top: 13px;
 }
+
+/*
+* OverviewView for aggregate stats
+*/
+.overview h3 {
+  text-align: center;
+  border-bottom: 1px solid #666;
+  width: 100%;
+}
+.overview-chart {
+  height: 350px;
+  width: 440px;
+  background-color: #aaa;
+  margin: 20px auto;
+  text-align: center;
+}
