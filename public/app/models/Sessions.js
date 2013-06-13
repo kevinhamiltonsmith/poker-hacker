@@ -39,7 +39,7 @@ var Sessions = Backbone.Collection.extend({
   },
 
   //Stats
-  winPercentage: function(win) {
+  winPercentage: function(win, notPercent) {
     var winCount = 0;
     var lossCount = 0;
     _.each(this.models, function(value){
@@ -47,8 +47,21 @@ var Sessions = Backbone.Collection.extend({
       if (value.get('netProfit') < 0) lossCount += 1;
     });
     var result = win ? winCount : lossCount;
-    return (result / this.totalSessions() * 100).toFixed(1);
-  }
+    if (notPercent) {
+      return result;
+    } else {
+      return (result / this.totalSessions() * 100).toFixed(1);
+    }
+  },
 
+  bestSession: function(best) {
+    var bestSesh = this.models[0].get('netProfit');
+    var worstSesh = this.models[0].get('netProfit');
+    _.each(this.models, function(value){
+      if (value.get('netProfit') > bestSesh) bestSesh = value.get('netProfit');
+      if (value.get('netProfit') < worstSesh) worstSesh = value.get('netProfit');
+    });
+    return best ? bestSesh : worstSesh;
+  }
 
 });

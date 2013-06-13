@@ -120,3 +120,12 @@ tr .session-note{
   margin: 20px auto;
   text-align: center;
 }
+
+/*
+* Stats
+*/
+.sesh-detail caption {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 15px 0 5px;
+}
