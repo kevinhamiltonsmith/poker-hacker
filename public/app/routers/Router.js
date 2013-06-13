@@ -4,7 +4,8 @@ var PokerHacker = Backbone.Router.extend({
     "": "index",
     "session/all": "sessionsNav",
     "session/:id": "sessionNav",
-    "overview": "overviewNav"
+    "overview": "overviewNav",
+    "stats": "statsNav"
   },
 
   initialize: function() {
@@ -32,6 +33,10 @@ var PokerHacker = Backbone.Router.extend({
   overviewNav: function() {
     this.overviewView = new OverviewView({collection: this.sessions});
     $('body').empty().append(this.overviewView.render());
-  }
+  },
 
+  statsNav: function() {
+    this.statsView = new StatsView({collection: this.sessions});
+    $('body').empty().append(this.statsView.render());
+  }
 });

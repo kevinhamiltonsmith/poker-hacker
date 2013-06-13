@@ -5,7 +5,7 @@ var SessionView = Backbone.View.extend({
   template: _.template(''+
     '<div data-session-id=<%= sessionId %> class="session-row">' +
       '<div class="row">' +
-        '<div class="centered six columns">' +
+        '<div class="centered seven columns">' +
           '<h3>Cash Game Session Detail</h3>' +
           '<ul class="three_up tiles sesh-nav">' +
             '<li class="button-bottom prev-sesh-nav">' +

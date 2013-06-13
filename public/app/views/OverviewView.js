@@ -4,7 +4,7 @@ var OverviewView = Backbone.View.extend({
 
   template: _.template(''+
     '<div class="row">' +
-      '<div class="centered six columns">' +
+      '<div class="centered seven columns">' +
         '<h3>All Results</h3>' +
         '<div class="overview-chart">Profit Chart</div>' +
         '<table class="sesh-detail">' +

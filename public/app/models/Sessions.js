@@ -36,5 +36,19 @@ var Sessions = Backbone.Collection.extend({
       return memo + singleVariance;
     }, 0);
     return Math.sqrt(variance / this.totalSessions()).toFixed(2);
+  },
+
+  //Stats
+  winPercentage: function(win) {
+    var winCount = 0;
+    var lossCount = 0;
+    _.each(this.models, function(value){
+      if (value.get('netProfit') > 0) winCount += 1;
+      if (value.get('netProfit') < 0) lossCount += 1;
+    });
+    var result = win ? winCount : lossCount;
+    return (result / this.totalSessions() * 100).toFixed(1);
   }
+
+
 });

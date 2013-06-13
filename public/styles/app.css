@@ -71,6 +71,7 @@
 }
 .sesh-detail {
   margin: 10px auto;
+  width: 95%;
 }
 .sesh-detail td {
   padding: 10px;
@@ -105,9 +106,9 @@ tr .session-note{
 }
 
 /*
-* OverviewView for aggregate stats
+* OverviewView
 */
-.overview h3 {
+.overview h3, .stats h3 {
   text-align: center;
   border-bottom: 1px solid #666;
   width: 100%;
