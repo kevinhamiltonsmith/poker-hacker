@@ -62,6 +62,33 @@ var Sessions = Backbone.Collection.extend({
       if (value.get('netProfit') < worstSesh) worstSesh = value.get('netProfit');
     });
     return best ? bestSesh : worstSesh;
+  },
+
+  sessionStreak: function(wins) {
+    var all = this.models;
+    var winStreak = 0;
+    var loseStreak = 0;
+    var currentLongestWin = 0;
+    var currentLongestLoss = 0;
+    _.each(all, function(value){
+      if (value.get('netProfit') > 0) winStreak = 1;
+      if (value.get('netProfit') < 0) loseStreak = 1;
+    });
+    for (var i = 1; i < all.length; i++) {
+      if ((all[i-1].get('netProfit') > 0) && (all[i].get('netProfit') > 0)) {
+        currentLongestWin += 1;
+        if (currentLongestWin > winStreak) winStreak = currentLongestWin;
+      } else {
+        currentLongestWin = 1;
+      }
+      if ((all[i-1].get('netProfit') < 0) && (all[i].get('netProfit') < 0)) {
+        currentLongestLoss += 1;
+        if (currentLongestLoss > loseStreak) loseStreak = currentLongestLoss;
+      } else {
+        currentLongestLoss = 1;
+      }
+    }
+    return wins ? winStreak : loseStreak;
   }
 
 });

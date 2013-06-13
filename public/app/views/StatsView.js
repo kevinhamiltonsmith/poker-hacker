@@ -22,6 +22,11 @@ var StatsView = Backbone.View.extend({
           '<tr><td>Best Session</td><td class="data-column"><%= bestSesh %></td></tr>' +
           '<tr><td>Worst Session</td><td class="data-column"><%= worstSesh %></td></tr>' +
         '</table>' +
+        '<table class="sesh-detail">' +
+          '<caption>Streaks</caption>' +
+          '<tr><td>Winning Sessions</td><td class="data-column"><%= winStreakSesh %></td></tr>' +
+          '<tr><td>Losing Sessions</td><td class="data-column"><%= loseStreakSesh %></td></tr>' +
+        '</table>' +
       '</div>' +
     '</div>'
   ),
@@ -46,6 +51,9 @@ var StatsView = Backbone.View.extend({
 
     stats.bestSesh = this.addDollar(this.collection.bestSession(true));
     stats.worstSesh = this.addDollar(this.collection.bestSession(false));
+
+    stats.winStreakSesh = this.collection.sessionStreak(true);
+    stats.loseStreakSesh = this.collection.sessionStreak(false);
 
     return this.$el.html(this.template(stats));
   },
