@@ -1,26 +1,30 @@
 <html>
   <head>
     <title>Poker Hacker</title>
-    <link href="lib/gumby/css/gumby.css" rel="stylesheet" type="text/css" media="screen">
+    <link href="lib/gumby/css/gumby.css" rel="stylesheet">
     <link href="styles/app.css" rel="stylesheet" type="text/css" media="screen">
+    <script src="lib/gumby/js/libs/modernizr-2.6.2.min.js"></script>
   </head>
   <body>
     <script src="lib/jquery.js"></script>
     <script src="lib/underscore.js"></script>
     <script src="lib/backbone.js"></script>
     <script src="lib/d3.v3.min.js"></script>
+    <script src="lib/gumby/js/libs/gumby.min.js"></script>
+    <script src="lib/gumby/js/plugins.js"></script>
+    <script src="lib/gumby/js/main.js"></script>
 
     <script src="app/data.js"></script>
 
     <script src="app/models/Session.js"></script>
     <script src="app/models/Sessions.js"></script>
 
+    <script src="app/views/IndexView.js"></script>
     <script src="app/views/SessionView.js"></script>
     <script src="app/views/SessionsView.js"></script>
     <script src="app/views/OverviewView.js"></script>
     <script src="app/views/StatsView.js"></script>
-
-    <!-- // <script src="app/app.js"></script> -->
+    <script src="app/views/AppView.js"></script>
 
     <script src="app/routers/Router.js"></script>
 

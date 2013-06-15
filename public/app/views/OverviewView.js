@@ -3,24 +3,17 @@ var OverviewView = Backbone.View.extend({
   className: 'overview',
 
   template: _.template(''+
-    '<div class="row">' +
-      '<div class="centered seven columns">' +
-        '<h3>All Results</h3>' +
-        '<div class="overview-chart">Profit Chart</div>' +
-        '<table class="sesh-detail">' +
-          '<tr><td>Number of Sessions</td><td class="data-column"><%= numSessions %></td></tr>' +
-          '<tr><td>Total Won</td><td class="data-column <%= winClass %>"><%= totalWon %></td></tr>' +
-          '<tr><td>Total Hours</td><td class="data-column"><%= totalHours %></td></tr>' +
-          '<tr><td>Average Win Rate</td><td class="data-column <%= winClass %>"><%= winRate %> / hour</td></tr>' +
-          '<tr><td>Average Win Per Session</td><td class="data-column <%= winClass %>"><%= winRateSesh %> / session</td></tr>' +
-          '<tr><td>Win Rate Std Deviation</td><td class="data-column <%= winClass %>"><%= winRateStdDev %> / hour</td></tr>' +
-        '</table>' +
-      '</div>' +
-    '</div>'
+    '<h3>All Results</h3>' +
+    '<div class="overview-chart">Profit Chart</div>' +
+    '<table class="sesh-detail">' +
+      '<tr><td>Number of Sessions</td><td class="data-column"><%= numSessions %></td></tr>' +
+      '<tr><td>Total Won</td><td class="data-column <%= winClass %>"><%= totalWon %></td></tr>' +
+      '<tr><td>Total Hours</td><td class="data-column"><%= totalHours %></td></tr>' +
+      '<tr><td>Average Win Rate</td><td class="data-column <%= winClass %>"><%= winRate %> / hour</td></tr>' +
+      '<tr><td>Average Win Per Session</td><td class="data-column <%= winClass %>"><%= winRateSesh %> / session</td></tr>' +
+      '<tr><td>Win Rate Std Deviation</td><td class="data-column <%= winClass %>"><%= winRateStdDev %> / hour</td></tr>' +
+    '</table>'
   ),
-
-  events: {
-  },
 
   initialize: function() {
   },

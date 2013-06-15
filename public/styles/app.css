@@ -1,28 +1,35 @@
 /*
 * Global styles
 */
-.clearfix:after {
-   content: ".";
-   visibility: hidden;
-   display: block;
-   height: 0;
-   clear: both;
+.container {
+  margin-top: 80px;
 }
 
+/*
+* Index
+*/
+.index h1 {
+  text-align: center;
+}
+.sign-in {
+  margin-top: 40px;
+  text-align: center;
+}
 
 /*
 * SessionsView list of all sessions
 */
 .sessions h3 {
-  margin: 0 auto;
+  margin: 0 auto 30px;
   text-align: center;
 }
-.single-session-row {
-  border-top: 1px solid #000;
-  padding: 8px;
+.sessions .row:nth-child(even) .single-session-row {
+  background-color: #eee;
 }
-.sessions-row div div {
+.single-session-row {
+  padding: 8px;
   font-weight: bold;
+  cursor: pointer;
 }
 .sessions-profit {
   font-size:1.4em;
@@ -58,7 +65,6 @@
   margin-top: 50%;
   margin-left: 50%;
   font-size: 1.5em;
-  cursor: pointer;
 }
 
 /*
@@ -66,7 +72,6 @@
 */
 .sesh h3 {
   text-align: center;
-  border-bottom: 1px solid #666;
   width: 100%;
 }
 .sesh-detail {
@@ -108,24 +113,43 @@ tr .session-note{
 /*
 * OverviewView
 */
-.overview h3, .stats h3 {
+.overview h3 {
   text-align: center;
-  border-bottom: 1px solid #666;
   width: 100%;
 }
 .overview-chart {
   height: 350px;
   width: 440px;
   background-color: #aaa;
-  margin: 20px auto;
+  margin: 30px auto 20px;
   text-align: center;
 }
 
 /*
 * Stats
 */
+.stats h3 {
+  text-align: center;
+  width: 100%;
+}
 .sesh-detail caption {
   font-size: 1.5em;
   font-weight: bold;
   margin: 15px 0 5px;
+}
+
+
+/*
+* Responsive Fixes
+*/
+@media only screen and (max-width: 768px) {
+  .container {
+    margin-top: 0px;
+  }
+  .sessions .row:nth-child(even) {
+    background-color: #eee;
+  }
+  .sessions .row {
+    padding: 8px;
+  }
 }

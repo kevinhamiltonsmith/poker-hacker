@@ -4,7 +4,7 @@ var StatsView = Backbone.View.extend({
 
   template: _.template(''+
     '<div class="row">' +
-      '<div class="centered seven columns">' +
+      '<div class="ten columns centered">' +
         '<h3>Stats</h3>' +
         '<table class="sesh-detail">' +
           '<caption>Totals</caption>' +
@@ -30,9 +30,6 @@ var StatsView = Backbone.View.extend({
       '</div>' +
     '</div>'
   ),
-
-  events: {
-  },
 
   initialize: function() {
   },
