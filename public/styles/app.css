@@ -1,11 +1,19 @@
 /*
-* Global styles
+* App
 */
 .container {
   margin-top: 80px;
 }
 .main-logo {
   color: #fff;
+}
+.main-logo:hover {
+  color: #3085d6;
+}
+.user-welcome {
+  color: #fff;
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 /*

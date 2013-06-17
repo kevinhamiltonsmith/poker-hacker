@@ -13,6 +13,7 @@ var AppView = Backbone.View.extend({
           '<li><a href="index.html#overview">Overview</a></li>' +
           '<li><a href="index.html#stats">Stats</a></li>' +
           '<li><a href="index.html#session/all">All Sessions</a></li>' +
+          '<li><span class="user-welcome">Welcome, Kevin</span></li>' +
         '</ul>' +
       '</div>' +
     '</div>' +
