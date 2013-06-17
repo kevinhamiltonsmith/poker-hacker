@@ -5,7 +5,7 @@ var AppView = Backbone.View.extend({
   template: _.template(''+
     '<div class="navbar fixed" gumby-fixed="top" id="nav1">' +
       '<div class="row">' +
-        '<a class="toggle" gumby-trigger="#nav1 > .row > ul" href="#"><i class="icon-menu"></i></a>' +
+        '<a class="toggle" gumby-trigger=".ul-nav" href="#"><i class="icon-menu"></i></a>' +
         '<h3 class="four columns logo">' +
           '<a href="index.html">Poker Hacker</a>' +
         '</h3>' +
