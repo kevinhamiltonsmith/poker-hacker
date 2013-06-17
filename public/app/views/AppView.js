@@ -19,8 +19,7 @@ var AppView = Backbone.View.extend({
     '<div class="row container">' +
       '<div class="eight columns main-content">' +
       '</div>' +
-      '<div class="push_one three columns">' +
-        '<h4>Add New Session Goes Here</h4>' +
+      '<div class="four columns new-game-sidebar">' +
       '</div>' +
     '</div>'
   ),

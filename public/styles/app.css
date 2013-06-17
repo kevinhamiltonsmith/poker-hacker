@@ -138,6 +138,13 @@ tr .session-note{
   margin: 15px 0 5px;
 }
 
+/*
+* New Game Sidebar
+*/
+.add-game-sidebar-view h4 {
+  text-align: center;
+}
+
 
 /*
 * Responsive Fixes

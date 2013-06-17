@@ -32,6 +32,8 @@ var StatsView = Backbone.View.extend({
   ),
 
   initialize: function() {
+    this.addGameSidebarView = new AddGameSidebarView();
+    $('.new-game-sidebar').empty().append(this.addGameSidebarView.render());
   },
 
   render: function(){
