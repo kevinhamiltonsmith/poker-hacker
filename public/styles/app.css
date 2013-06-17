@@ -4,6 +4,9 @@
 .container {
   margin-top: 80px;
 }
+.main-logo {
+  color: #fff;
+}
 
 /*
 * Index
@@ -143,6 +146,16 @@ tr .session-note{
 */
 .add-game-sidebar-view h4 {
   text-align: center;
+}
+.add-game-sidebar-view .field {
+  margin-bottom: 15px;
+}
+.add-game-sidebar-view fieldset {
+  font-size: 1.3em;
+}
+.new-session-button {
+  text-align: center;
+  margin-top: 30px;
 }
 
 

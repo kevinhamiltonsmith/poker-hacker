@@ -1,9 +1,9 @@
 var setupData = {
     "locations": ["Aria", "Bellagio", "Caesars Palace", "My House", "Planet Hollywood"],
     "locationTypes": ["casino", "home game"],
-    "stakes": ["$.5/1", "$1/2", "$1/3", "$2/5", "$4/8", "$5/10", "$8/16", "$10/20"],
-    "games": ["7 Card Stud", "Dealer's Choice", "Omaha", "Omaha 8", "Texas Hold'em"],
-    "limitTypes": ["Limit", "Mixed Limit", "No Limit", "Pot Limit", "Spread Limit"],
+    "stakes": ["$2/5", "$.5/1", "$1/2", "$1/3", "$4/8", "$5/10", "$8/16", "$10/20"],
+    "games": ["Texas Hold'em", "7 Card Stud", "Dealer's Choice", "Omaha", "Omaha 8"],
+    "limitTypes": ["No Limit", "Limit", "Mixed Limit", "Pot Limit", "Spread Limit"],
   };
 
 var testData = [

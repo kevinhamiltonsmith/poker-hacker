@@ -7,7 +7,7 @@ var AppView = Backbone.View.extend({
       '<div class="row">' +
         '<a class="toggle" gumby-trigger=".ul-nav" href="#"><i class="icon-menu"></i></a>' +
         '<h3 class="four columns logo">' +
-          '<a href="index.html">Poker Hacker</a>' +
+          '<a href="index.html" class="main-logo">Poker Hacker</a>' +
         '</h3>' +
         '<ul class="eight columns ul-nav">' +
           '<li><a href="index.html#overview">Overview</a></li>' +
