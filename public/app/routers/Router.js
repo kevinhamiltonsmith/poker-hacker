@@ -37,6 +37,8 @@ var PokerHacker = Backbone.Router.extend({
   overviewNav: function() {
     this.overviewView = new OverviewView({collection: this.sessions});
     $('.main-content').empty().append(this.overviewView.render());
+    this.overviewChartView = new OverviewChartView();
+    $('.overview-chart-wrapper').empty().append(this.overviewChartView.render());
   },
 
   statsNav: function() {

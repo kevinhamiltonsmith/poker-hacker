@@ -128,12 +128,10 @@ tr .session-note{
   text-align: center;
   width: 100%;
 }
-.overview-chart {
-  height: 350px;
-  width: 440px;
-  background-color: #aaa;
-  margin: 30px auto 20px;
-  text-align: center;
+.overview path {
+  stroke: #c00;
+  stroke-width: 3px;
+  fill: none;
 }
 
 /*

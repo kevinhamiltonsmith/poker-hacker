@@ -4,7 +4,7 @@ var OverviewView = Backbone.View.extend({
 
   template: _.template(''+
     '<h3>All Results</h3>' +
-    '<div class="overview-chart">Profit Chart</div>' +
+    '<div class="overview-chart-wrapper"></div>' +
     '<table class="sesh-detail">' +
       '<tr><td>Number of Sessions</td><td class="data-column"><%= numSessions %></td></tr>' +
       '<tr><td>Total Won</td><td class="data-column <%= winClass %>"><%= totalWon %></td></tr>' +
@@ -27,6 +27,7 @@ var OverviewView = Backbone.View.extend({
     overView.numSessions = this.collection.totalSessions();
     overView.totalHours = this.collection.totalHours();
 
+//TODO: refactor below
     var totalWon = this.collection.totalWon();
     var winRate = this.collection.winRate();
     var winRateSesh = this.collection.winRateSesh();
