@@ -29,9 +29,6 @@ var SessionsView = Backbone.View.extend({
   },
 
   initialize: function() {
-    this.setupData = new SetupData(setupData);
-    this.addGameSidebarView = new AddGameSidebarView({model: this.setupData});
-    $('.new-game-sidebar').empty().append(this.addGameSidebarView.render());
   },
 
   render: function(){

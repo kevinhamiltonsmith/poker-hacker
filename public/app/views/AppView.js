@@ -4,6 +4,9 @@ var AppView = Backbone.View.extend({
 
   template: _.template(''+
     '<div class="navbar fixed" gumby-fixed="top" id="nav1">' +
+      '<div class="row top-in-progress-alert">' +
+        '<div class="danger alert">Session currently in progress.</div>' +
+      '</div>' +
       '<div class="row">' +
         '<a class="toggle" gumby-trigger=".ul-nav" href="#"><i class="icon-menu"></i></a>' +
         '<h3 class="four columns logo">' +

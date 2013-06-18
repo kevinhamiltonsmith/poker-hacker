@@ -15,6 +15,10 @@
   cursor: pointer;
   text-decoration: underline;
 }
+.top-in-progress-alert {
+  display: none;
+  text-align: center;
+}
 
 /*
 * Index
@@ -179,6 +183,10 @@ tr .session-note{
 .new-session-button {
   text-align: center;
   margin-top: 30px;
+}
+.end-session-button {
+  text-align: center;
+  display: none;
 }
 
 

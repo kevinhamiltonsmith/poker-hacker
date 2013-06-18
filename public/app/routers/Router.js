@@ -22,6 +22,10 @@ var PokerHacker = Backbone.Router.extend({
     });
     this.appView = new AppView();
     $('body').empty().append(this.appView.render());
+    
+    this.setupData = new SetupData(setupData);
+    this.addGameSidebarView = new AddGameSidebarView({model: this.setupData});
+    $('.new-game-sidebar').empty().append(this.addGameSidebarView.render());
   },
 
   start: function() {

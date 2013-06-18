@@ -2,6 +2,25 @@ var AddGameSidebarView = Backbone.View.extend({
 
   className: 'add-game-sidebar-view',
 
+  events: {
+    'click .new-session-button': function(event){
+      event.preventDefault();
+      $('.new-session-button').slideUp('fast');
+      $('.end-session-button').fadeIn('slow');
+      $('.top-in-progress-alert').slideDown('slow');
+      // var squareValue = parseInt($(event.currentTarget).html());
+      // var position = $(event.currentTarget).data("position");
+      // this.model.setSquare(squareValue, position);
+    },
+
+    'click .end-session-button': function(event){
+      event.preventDefault();
+      $('.end-session-button').fadeOut('fast');
+      $('.new-session-button').slideDown('slow');
+      $('.top-in-progress-alert').fadeOut('fast');
+    },
+  },
+
   template: _.template(''+
     '<form>' +
       '<div class="row">' +
@@ -43,6 +62,11 @@ var AddGameSidebarView = Backbone.View.extend({
             '<li>' +
               '<div class="new-session-button">' +
                 '<div class="btn medium success metro"><a href="#">Start Session</a></div>' +
+              '</div>' +
+            '</li>' +
+            '<li>' +
+              '<div class="end-session-button">' +
+                '<div class="btn medium danger metro"><a href="#">End Session</a></div>' +
               '</div>' +
             '</li>' +
           '</ul>' +
