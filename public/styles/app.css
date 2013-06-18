@@ -128,10 +128,27 @@ tr .session-note{
   text-align: center;
   width: 100%;
 }
-.overview path {
-  stroke: #c00;
+.overview-chart-wrapper {
+  margin: 25px auto 40px;
+  background-color: #000;
+}
+.overview-chart path {
+  stroke: #58c026;
   stroke-width: 3px;
   fill: none;
+}
+.overview-chart svg {
+  padding: 20px 10px 30px 20px;
+}
+.ticky line, .tickx line {
+  stroke-width: 1px;
+  stroke: #777;
+  stroke-opacity: 0.4;
+  shape-rendering: crispedges;
+}
+.ticky text, .tickx text {
+  fill: #777;
+  font-size: 10px;
 }
 
 /*
