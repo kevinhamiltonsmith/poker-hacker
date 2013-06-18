@@ -27,7 +27,7 @@ var AddGameSidebarView = Backbone.View.extend({
         '<fieldset class="twelve columns">' +
           '<legend>New Cash Game Session</legend>' +
           '<ul>' +
-            '<li class="prepend field">' +
+            '<li class="prepend field new-buyin">' +
               '<div class="row"><label class="default label">Initial Buyin</label></div>' +
               '<span class="adjoined">$</span>' +
               '<input class="wide text input" id="text1" type="text" placeholder="Buyin" />' +

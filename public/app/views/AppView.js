@@ -9,7 +9,7 @@ var AppView = Backbone.View.extend({
         '<div class="row">' +
           '<div class="ten columns centered center-text">' +
             '<h2>Login With Facebook</h2>' +
-            '<p></p>' +
+            '<p>Coming Soon</p>' +
             '<p class="btn primary medium"><a href="#" class="switch" gumby-trigger="|#modal1">Login</a></p>' +
           '</div>' +
         '</div>' +
@@ -37,6 +37,12 @@ var AppView = Backbone.View.extend({
       '</div>' +
       '<div class="four columns new-game-sidebar">' +
       '</div>' +
+    '</div>' +
+    '<div class="row footer">' +
+      '<ul class="centered ten columns">' +
+        '<li><p>©2013 <a href="http://kevinhamiltonsmith.com">Kevin Hamilton Smith</a></p>' +
+        '<li><i class="icon-github"></i><p><a href="https://github.com/kevinhamiltonsmith/poker-hacker">Fork on Github</a></p>' +
+      '</ul>' +
     '</div>'
   ),
 

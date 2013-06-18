@@ -31,6 +31,10 @@
 .index h1 {
   text-align: center;
 }
+
+/*
+* Login
+*/
 .sign-in-button {
   margin-top: 40px;
   text-align: center;
@@ -194,6 +198,24 @@ tr .session-note{
   display: none;
 }
 
+/*
+* Footer
+*/
+.footer {
+  border-top: 1px solid #ddd;
+  margin-top: 90px;
+  min-height: 50px;
+}
+.footer li {
+  float: left;
+  margin: 11px 100px 0;
+}
+.footer i, .footer p {
+  display: inline;
+}
+.footer a {
+  color: #555555;
+}
 
 /*
 * Responsive Fixes
@@ -207,5 +229,11 @@ tr .session-note{
   }
   .sessions .row {
     padding: 8px;
+  }
+  .add-game-sidebar-view {
+    margin-top: 80px
+  }
+  .footer li {
+    margin: 5px 10px;
   }
 }
