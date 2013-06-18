@@ -1,4 +1,4 @@
-var PokerHacker = Parse.Router.extend({
+var PokerHacker = Backbone.Router.extend({
 
   routes: {
     "": "index",
@@ -11,7 +11,12 @@ var PokerHacker = Parse.Router.extend({
   initialize: function() {
     Parse.initialize("3fI4larsOgFFmf2wXb1NL9LWZHydgHZl5IGpV8fz", "Kg3zRBFWsyLb4gszNN3Yv4EK4nPoUN5wMdSo7RcT");
     var self = this;
-    this.sessions = new Sessions();      
+    this.sessions = new Sessions();
+
+    var query = new Parse.Query(Session);
+    query.descending("sessionID");
+    this.sessions.query = query;
+
     this.sessions.fetch({
       success: function() {
         for (var i = 0; i < self.sessions.models.length; i++) {
@@ -24,7 +29,7 @@ var PokerHacker = Parse.Router.extend({
   },
 
   start: function() {
-    Parse.history.start();
+    Backbone.history.start();
   },
 
   index: function() {
@@ -38,10 +43,16 @@ var PokerHacker = Parse.Router.extend({
   },
 
   sessionNav: function(id) {
-    console.log(this.sessions)
-    this.session = new Session(this.sessions.findWhere({sessionId: id}).attributes);
-    this.sessionView = new SessionView({model: this.session});
-    $('.main-content').empty().append(this.sessionView.render());
+    var query = new Parse.Query(Session);
+    query.equalTo("sessionId", id);
+    query.find({
+      success: function(results) {
+        results[0].trigger('start');
+        this.session = results[0];
+        this.sessionView = new SessionView({model: this.session});
+        $('.main-content').empty().append(this.sessionView.render());
+      }
+    });
   },
 
   overviewNav: function() {
