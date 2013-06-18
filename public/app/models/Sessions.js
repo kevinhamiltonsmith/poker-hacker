@@ -1,5 +1,8 @@
-var Sessions = Backbone.Collection.extend({
+var Sessions = Parse.Collection.extend({
   model: Session,
+
+  initialize: function() {
+  },
 
   totalSessions: function() {
     return this.length;

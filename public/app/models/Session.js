@@ -1,9 +1,12 @@
-var Session = Backbone.Model.extend({
-  defaults: {
-    //pull in user-specified defaults
-  },
+var Session = Parse.Object.extend({
+
+  className: "SessionTest",
 
   initialize: function() {
+    this.on('start', this.formatData, this);
+  },
+
+  formatData: function() {
     var netProfit = this.get('netProfit');
     if (netProfit < 0) {
       netProfit = '($' + netProfit*-1 + ')';
