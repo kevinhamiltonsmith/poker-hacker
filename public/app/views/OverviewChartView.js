@@ -7,7 +7,8 @@ var OverviewChartView = Backbone.View.extend({
   ),
 
   initialize: function() {
-    data = [3,7,9,1,4,6,8,2,5];
+    // var data = [3,7,9,1,4,6,8,2,5];
+    data = this.collection.profitData();
     w = 580;
     h = 350;
     max = d3.max(data);

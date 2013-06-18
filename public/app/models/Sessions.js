@@ -11,6 +11,17 @@ var Sessions = Backbone.Collection.extend({
     }, 0);
   },
 
+  profitData: function() {
+    var result = [];
+    var runningTotal = 0;
+    _.each(this.models, function(value){
+      runningTotal = runningTotal + value.get('netProfit');
+      result.push(runningTotal);
+    });
+    console.log(result)
+    return result;
+  },
+
   totalHours: function() {
     return this.reduce(function(memo, value){
       var timeParts = value.get('sessionLength').split(/:/);
