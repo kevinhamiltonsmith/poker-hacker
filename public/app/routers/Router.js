@@ -13,10 +13,6 @@ var PokerHacker = Backbone.Router.extend({
     var self = this;
     this.sessions = new Sessions();
 
-    var query = new Parse.Query(Session);
-    query.descending("sessionID");
-    this.sessions.query = query;
-
     this.sessions.fetch({
       success: function() {
         for (var i = 0; i < self.sessions.models.length; i++) {
@@ -39,7 +35,7 @@ var PokerHacker = Backbone.Router.extend({
 
   sessionsNav: function() {
     this.sessionsView = new SessionsView({collection: this.sessions});
-    $('.main-content').empty().append(this.sessionsView.render());
+    $('.main-content').empty().append(this.sessionsView.render().el);
   },
 
   sessionNav: function(id) {

@@ -36,12 +36,13 @@ var SessionsView = Backbone.View.extend({
 
   render: function(){
     var self = this;
-    this.$el.append('<h3>Cash Game Session History</h3>');
-    return this.$el.append(
+    this.$el.append(
       this.collection.map(function(session){
-        return self.$el.append(self.template(session.attributes));
+        return self.$el.prepend(self.template(session.attributes));
       })
     );
+    this.$el.prepend('<h3>Cash Game Session History</h3>');
+    return this;
   },
 
   sessionNav: function(id) {
