@@ -18,7 +18,6 @@ var Sessions = Backbone.Collection.extend({
       runningTotal = runningTotal + value.get('netProfit');
       result.push(runningTotal);
     });
-    console.log(result)
     return result;
   },
 

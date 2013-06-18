@@ -7,14 +7,14 @@ var OverviewChartView = Backbone.View.extend({
   ),
 
   initialize: function() {
-    // var data = [3,7,9,1,4,6,8,2,5];
     data = this.collection.profitData();
-    w = 580;
+    w = 560;
     h = 350;
     max = d3.max(data);
+    min = d3.min(data);
 
     x = d3.scale.linear().domain([0, data.length - 1]).range([0, w]);
-    y = d3.scale.linear().domain([0, max]).range([h, 0]);
+    y = d3.scale.linear().domain([min, max]).range([h, 0]);
 
     var vis = d3.select(this.el)
       .append('svg:svg')

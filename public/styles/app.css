@@ -138,7 +138,7 @@ tr .session-note{
   fill: none;
 }
 .overview-chart svg {
-  padding: 20px 10px 30px 20px;
+  padding: 20px 10px 30px 30px;
 }
 .ticky line, .tickx line {
   stroke-width: 1px;
