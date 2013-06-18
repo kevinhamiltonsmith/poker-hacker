@@ -27,12 +27,12 @@ var AddGameSidebarView = Backbone.View.extend({
         '<fieldset class="twelve columns">' +
           '<legend>New Cash Game Session</legend>' +
           '<ul>' +
-            '<li class="prepend field new-buyin">' +
+            '<li class="prepend field new-sesh-buyin">' +
               '<div class="row"><label class="default label">Initial Buyin</label></div>' +
               '<span class="adjoined">$</span>' +
               '<input class="wide text input" id="text1" type="text" placeholder="Buyin" />' +
             '</li>' +
-            '<li class="field">' +
+            '<li class="field new-sesh-location">' +
               '<div class="row"><label class="default label">Location</label></div>' +
               '<div class="picker">' +
                 '<select class="locationSelect">' +
@@ -41,7 +41,7 @@ var AddGameSidebarView = Backbone.View.extend({
                 '</select>' +
               '</div>' +
             '</li>' +
-            '<li class="field">' +
+            '<li class="field new-sesh-stake">' +
               '<div class="row"><label class="default label">Stake</label></div>' +
               '<div class="picker">' +
                 '<select class="stakesSelect">' +
@@ -50,7 +50,7 @@ var AddGameSidebarView = Backbone.View.extend({
                 '</select>' +
               '</div>' +
             '</li>' +
-            '<li class="field">' +
+            '<li class="field new-sesh-game">' +
               '<div class="row"><label class="default label">Game</label></div>' +
               '<div class="picker">' +
                 '<select class="gamesSelect">' +
@@ -76,6 +76,7 @@ var AddGameSidebarView = Backbone.View.extend({
   ),
 
   initialize: function() {
+    console.log(this);
   },
 
   render: function(){

@@ -10,9 +10,18 @@ var PokerHacker = Backbone.Router.extend({
 
   initialize: function() {
     Parse.initialize("3fI4larsOgFFmf2wXb1NL9LWZHydgHZl5IGpV8fz", "Kg3zRBFWsyLb4gszNN3Yv4EK4nPoUN5wMdSo7RcT");
+    this.fetchCollection();
+    this.appView = new AppView();
+    $('body').empty().append(this.appView.render());
+  },
+
+  start: function() {
+    Backbone.history.start();
+  },
+
+  fetchCollection: function() {
     var self = this;
     this.sessions = new Sessions();
-
     this.sessions.fetch({
       success: function() {
         for (var i = 0; i < self.sessions.models.length; i++) {
@@ -20,12 +29,6 @@ var PokerHacker = Backbone.Router.extend({
         };
       }
     });
-    this.appView = new AppView();
-    $('body').empty().append(this.appView.render());
-  },
-
-  start: function() {
-    Backbone.history.start();
   },
 
   index: function() {
@@ -75,7 +78,7 @@ var PokerHacker = Backbone.Router.extend({
 
   newSessionSidebar: function() {
     this.setupData = new SetupData(setupData);
-    this.addGameSidebarView = new AddGameSidebarView({model: this.setupData});
+    this.addGameSidebarView = new AddGameSidebarView({model: this.setupData, collection: this.sessions});
     $('.new-game-sidebar').empty().append(this.addGameSidebarView.render());
   }
 });
