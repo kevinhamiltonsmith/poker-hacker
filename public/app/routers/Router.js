@@ -22,10 +22,6 @@ var PokerHacker = Backbone.Router.extend({
     });
     this.appView = new AppView();
     $('body').empty().append(this.appView.render());
-    
-    this.setupData = new SetupData(setupData);
-    this.addGameSidebarView = new AddGameSidebarView({model: this.setupData});
-    $('.new-game-sidebar').empty().append(this.addGameSidebarView.render());
   },
 
   start: function() {
@@ -35,11 +31,13 @@ var PokerHacker = Backbone.Router.extend({
   index: function() {
     this.indexView = new IndexView();
     $('.main-content').empty().append(this.indexView.render());
+    this.loginSidebar();
   },
 
   sessionsNav: function() {
     this.sessionsView = new SessionsView({collection: this.sessions});
     $('.main-content').empty().append(this.sessionsView.render().el);
+    this.newSessionSidebar();
   },
 
   sessionNav: function(id) {
@@ -53,6 +51,7 @@ var PokerHacker = Backbone.Router.extend({
         $('.main-content').empty().append(this.sessionView.render());
       }
     });
+    this.newSessionSidebar();
   },
 
   overviewNav: function() {
@@ -60,10 +59,23 @@ var PokerHacker = Backbone.Router.extend({
     $('.main-content').empty().append(this.overviewView.render());
     this.overviewChartView = new OverviewChartView({collection: this.sessions});
     $('.overview-chart-wrapper').empty().append(this.overviewChartView.render());
+    this.newSessionSidebar();
   },
 
   statsNav: function() {
     this.statsView = new StatsView({collection: this.sessions});
     $('.main-content').empty().append(this.statsView.render());
+    this.newSessionSidebar();
+  },
+
+  loginSidebar: function() {
+    this.loginView = new LoginView();
+    $('.new-game-sidebar').empty().append(this.loginView.render());
+  },
+
+  newSessionSidebar: function() {
+    this.setupData = new SetupData(setupData);
+    this.addGameSidebarView = new AddGameSidebarView({model: this.setupData});
+    $('.new-game-sidebar').empty().append(this.addGameSidebarView.render());
   }
 });

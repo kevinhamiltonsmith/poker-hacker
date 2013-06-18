@@ -19,6 +19,11 @@
   display: none;
   text-align: center;
 }
+.index-info {
+  padding: 15px;
+  margin-top: 30px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.6), 0 22px 70px 4px rgba(0,0,0,0.56), 0 0 0 1px rgba(0, 0, 0, 0.3);
+}
 
 /*
 * Index
@@ -26,7 +31,7 @@
 .index h1 {
   text-align: center;
 }
-.sign-in {
+.sign-in-button {
   margin-top: 40px;
   text-align: center;
 }

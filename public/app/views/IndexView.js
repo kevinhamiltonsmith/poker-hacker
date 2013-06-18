@@ -6,8 +6,13 @@ var IndexView = Backbone.View.extend({
     '<div class="row">' +
       '<div class="ten columns centered">' +
         '<h1>Hack Your<br>Poker Game</h1>' +
-        '<div class="sign-in">' +
-          '<div class="btn large primary metro"><a href="#">Sign In</a></div>' +
+        '<div class="index-info">' +
+          '<h4>Powerful Session Tracking</h4>' +
+          '<p>Live poker tracking, the way it should be: a simple to use interface, complete stats analysis, and no Excel spreadsheets.</p>' +
+          '<h4>View on Any Device</h4>' +
+          '<p>Responsive, mobile-first design for easy access while at the table.</p>' +
+          '<h4>Your Data is Secure in the Cloud</h4>' +
+          '<p>Modern database storage, so your data is always backed-up and accessible from anywhere, on any device.</p>' +
         '</div>' +
       '</div>' +
     '</div>'
