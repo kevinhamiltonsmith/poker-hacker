@@ -15,7 +15,7 @@ var AppView = Backbone.View.extend({
         '</div>' +
       '</div>' +
     '</div>' +
-    '<div class="navbar fixed" gumby-fixed="top" id="nav1">' +
+    '<div class="navbar" id="nav1">' +
       '<div class="row top-in-progress-alert">' +
         '<div class="danger alert">Session currently in progress.</div>' +
       '</div>' +

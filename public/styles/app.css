@@ -2,7 +2,6 @@
 * App
 */
 .container {
-  margin-top: 80px;
 }
 .main-logo {
   color: #fff;
@@ -189,6 +188,9 @@ tr .session-note{
 .add-game-sidebar-view fieldset {
   font-size: 1.3em;
 }
+.session-in-progress {
+  border-color: #ca3838;
+}
 .new-session-button {
   text-align: center;
   margin-top: 30px;
@@ -196,6 +198,12 @@ tr .session-note{
 .end-session-button {
   text-align: center;
   display: none;
+}
+.new-sesh-cashout, .new-sesh-start-time {
+  display: none;
+}
+.set-data {
+  font-size: 0.9em;
 }
 
 /*

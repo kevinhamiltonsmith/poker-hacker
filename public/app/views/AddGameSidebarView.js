@@ -5,20 +5,55 @@ var AddGameSidebarView = Backbone.View.extend({
   events: {
     'click .new-session-button': function(event){
       event.preventDefault();
+
+      this.createNewSesh();
+      this.render();
+
       $('.new-session-button').slideUp('fast');
       $('.end-session-button').fadeIn('slow');
       $('.top-in-progress-alert').slideDown('slow');
-      // var squareValue = parseInt($(event.currentTarget).html());
-      // var position = $(event.currentTarget).data("position");
-      // this.model.setSquare(squareValue, position);
+      $('.new-sesh-cashout').fadeIn();
+      $('.add-game-sidebar-view form fieldset').addClass('session-in-progress');
+
+      //display final values
+      $('.new-sesh-start-time').fadeIn();
     },
 
     'click .end-session-button': function(event){
       event.preventDefault();
       $('.end-session-button').fadeOut('fast');
-      $('.new-session-button').slideDown('slow');
       $('.top-in-progress-alert').fadeOut('fast');
+      $('.add-game-sidebar-view form fieldset').removeClass('session-in-progress');
     },
+  },
+
+  initialize: function() {
+    this.newSesh = new Session();
+  },
+
+  createNewSesh: function() {
+    this.newSesh = new Session();
+
+    var dt = new Date();
+    this.newSesh.set({dateStartRaw: dt});
+    var startDate = dt.getMonth() + 1 + "/" + dt.getDate() + "/" + dt.getFullYear();
+    var startTime = this.formatAMPM(dt);
+    this.newSesh.set({dateStart: startDate + ', ' + startTime});
+
+    var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    this.newSesh.set({weekday: days[dt.getDay()] });
+
+    this.newSesh.set({sessionId: this.collection.models.length + 1});
+
+    var buyin = $('#buyin-input').val();
+    this.newSesh.set({totalBuyin: buyin});
+
+//TODO: finish up setting initial values, save to Parse
+    console.log(this.newSesh)
+  },
+
+  finalizeSesh: function() {
+//TODO: update Parse with the finalized session details
   },
 
   template: _.template(''+
@@ -27,10 +62,18 @@ var AddGameSidebarView = Backbone.View.extend({
         '<fieldset class="twelve columns">' +
           '<legend>New Cash Game Session</legend>' +
           '<ul>' +
+            '<li class="field new-sesh-start-time">' +
+              '<div class="row"><label class="default label">Start Date, Time</label></div><span class="set-data"><%= dateStart %></span>' +
+            '</li>' +
             '<li class="prepend field new-sesh-buyin">' +
               '<div class="row"><label class="default label">Initial Buyin</label></div>' +
               '<span class="adjoined">$</span>' +
-              '<input class="wide text input" id="text1" type="text" placeholder="Buyin" />' +
+              '<input class="wide text input" id="buyin-input" type="text" placeholder="Buyin" />' +
+            '</li>' +
+            '<li class="prepend field new-sesh-cashout">' +
+              '<div class="row"><label class="default label">Cash Out</label></div>' +
+              '<span class="adjoined">$</span>' +
+              '<input class="wide text input" id="cashout-input" type="text" placeholder="Cash Out" />' +
             '</li>' +
             '<li class="field new-sesh-location">' +
               '<div class="row"><label class="default label">Location</label></div>' +
@@ -75,11 +118,19 @@ var AddGameSidebarView = Backbone.View.extend({
     '</form>'
   ),
 
-  initialize: function() {
-    console.log(this);
+  render: function(){
+    var allData = $.extend({}, this.model.attributes, this.newSesh.attributes);
+    return this.$el.html(this.template(allData));
   },
 
-  render: function(){
-    return this.$el.html(this.template(this.model.attributes));
+  formatAMPM: function(date) {
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    minutes = minutes < 10 ? '0'+minutes : minutes;
+    var strTime = hours + ':' + minutes + ' ' + ampm;
+    return strTime;
   }
 });

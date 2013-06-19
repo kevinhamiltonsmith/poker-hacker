@@ -2,6 +2,23 @@ var Session = Parse.Object.extend({
 
   className: "SessionTest",
 
+  defaults: {
+    "sessionId":"",
+    "dateStart":"",
+    "dateEnd":"",
+    "sessionLength":"0:00:00",
+    "weekday":"",
+    "game":"",
+    "stakes":"",
+    "limitType":"",
+    "location":"",
+    "locationType":"Casino",
+    "totalBuyin":0,
+    "cashedOut":0,
+    "netProfit":0,
+    "note":""
+  },
+
   initialize: function() {
     this.on('start', this.formatData, this);
   },
