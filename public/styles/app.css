@@ -182,6 +182,9 @@ tr .session-note{
 .add-game-sidebar-view h4 {
   text-align: center;
 }
+.add-game-sidebar-view h5 {
+  margin-left: 10px;
+}
 .add-game-sidebar-view .field {
   margin-bottom: 15px;
 }
@@ -199,12 +202,10 @@ tr .session-note{
   text-align: center;
   display: none;
 }
-.new-sesh-cashout, .new-sesh-start-time {
+.new-sesh-cashout, .new-sesh-start-time, .start-show {
   display: none;
 }
-.set-data {
-  font-size: 0.9em;
-}
+
 
 /*
 * Footer

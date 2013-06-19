@@ -1,7 +1,7 @@
 var setupData = {
     "locations": ["Aria", "Bellagio", "Caesars Palace", "My House", "Planet Hollywood"],
     "locationTypes": ["casino", "home game"],
-    "stakes": ["$2/5", "$.5/1", "$1/2", "$1/3", "$4/8", "$5/10", "$8/16", "$10/20"],
+    "stakesList": ["$2/5", "$.5/1", "$1/2", "$1/3", "$4/8", "$5/10", "$8/16", "$10/20"],
     "games": ["Texas Hold'em", "7 Card Stud", "Dealer's Choice", "Omaha", "Omaha 8"],
     "limitTypes": ["No Limit", "Limit", "Mixed Limit", "Pot Limit", "Spread Limit"],
   };
