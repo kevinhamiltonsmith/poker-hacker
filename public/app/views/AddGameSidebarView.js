@@ -40,15 +40,15 @@ var AddGameSidebarView = Backbone.View.extend({
     this.newSesh.set({game: $('.gamesSelect').val()});
     this.newSesh.set({limitType: $('.limitSelect').val()});
     
-    this.newSesh.save(null, {
-      success: function(newSesh) {
-        alert('New object created with objectId: ' + newSesh.id);
-        this.newSesh.trigger('start');
-      },
-      error: function(newSesh, error) {
-        alert('Failed to create new object, with error code: ' + error.description);
-      }
-    });
+    // this.newSesh.save(null, {
+    //   success: function(newSesh) {
+    //     alert('New object created with objectId: ' + newSesh.id);
+    //     this.newSesh.trigger('start');
+    //   },
+    //   error: function(newSesh, error) {
+    //     alert('Failed to create new object, with error code: ' + error.description);
+    //   }
+    // });
   },
 
   finalizeSesh: function() {
