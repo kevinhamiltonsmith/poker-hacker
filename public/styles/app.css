@@ -183,7 +183,7 @@ tr .session-note{
   text-align: center;
 }
 .add-game-sidebar-view h5 {
-  margin-left: 10px;
+  margin: -10px 0 0 10px;
 }
 .add-game-sidebar-view .field {
   margin-bottom: 15px;
@@ -194,6 +194,9 @@ tr .session-note{
 .session-in-progress {
   border-color: #ca3838;
 }
+.session-complete {
+  border-color: #58c026;
+}
 .new-session-button {
   text-align: center;
   margin-top: 30px;
@@ -202,7 +205,7 @@ tr .session-note{
   text-align: center;
   display: none;
 }
-.new-sesh-cashout, .new-sesh-start-time, .start-show {
+.new-sesh-cashout, .new-sesh-start-time, .start-show, .end-show {
   display: none;
 }
 
