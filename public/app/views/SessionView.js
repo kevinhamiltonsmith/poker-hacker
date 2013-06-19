@@ -25,13 +25,11 @@ var SessionView = Backbone.View.extend({
           '<tr><td>Net Profit</td><td class="data-column <%= profitClass %>"><%= parenProfit %></td></tr>'+
           '<tr><td>Start Date and Time</td><td class="data-column"><%= dateStart %></td></tr>' +
           '<tr><td>End Date and Time</td><td class="data-column"><%= dateEnd %></td></tr>' +
-          '<tr><td>Session Length</td><td class="data-column"><%= sessionLengthShort %></td></tr>' +
+          '<tr><td>Session Length</td><td class="data-column"><%= sessionLength %></td></tr>' +
           '<tr><td>Day of the Week</td><td class="data-column"><%= weekday %></td></tr>' +
           '<tr><td>Location Type</td><td class="data-column"><%= locationType %></td></tr>' +
           '<tr><td>Total Buyin</td><td class="data-column <%= profitClass %>">$<%= totalBuyin %></td></tr>' +
           '<tr><td>Cashed Out</td><td class="data-column <%= profitClass %>">$<%= cashedOut %></td></tr>' +
-          '<tr><td>Rebuy Count</td><td class="data-column <%= profitClass %>"><%= rebuyCount %></td></tr>' +
-          '<tr><td>Rebuy Total</td><td class="data-column <%= profitClass %>">$<%= rebuyTotal %></td></tr>' +
           '<tr><td>Notes</td><td class="data-column session-note"><%= note %></td></tr>' +
         '</table>' +
       '</div>' +

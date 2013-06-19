@@ -1,6 +1,6 @@
 var Session = Parse.Object.extend({
 
-  className: "SessionTest",
+  className: "TestData",
 
   defaults: {
     "sessionId":"",
@@ -37,9 +37,5 @@ var Session = Parse.Object.extend({
     var date = this.get('dateStart');
     date = date.substr(0, date.indexOf(','));
     this.set({date: date});
-
-    var time = this.get('sessionLength');
-    time = time.split('').slice(0, -3).join('');
-    this.set({sessionLengthShort: time});
   }
 });

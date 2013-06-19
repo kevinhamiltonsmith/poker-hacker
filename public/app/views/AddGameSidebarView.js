@@ -42,12 +42,10 @@ var AddGameSidebarView = Backbone.View.extend({
     
     this.newSesh.save(null, {
       success: function(newSesh) {
-        // Execute any logic that should take place after the object is saved.
         alert('New object created with objectId: ' + newSesh.id);
+        this.newSesh.trigger('start');
       },
       error: function(newSesh, error) {
-        // Execute any logic that should take place if the save fails.
-        // error is a Parse.Error with an error code and description.
         alert('Failed to create new object, with error code: ' + error.description);
       }
     });
