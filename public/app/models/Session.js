@@ -20,7 +20,7 @@ var Session = Parse.Object.extend({
   },
 
   initialize: function() {
-    this.on('start', this.formatData, this);
+    this.on('formatData', this.formatData, this);
   },
 
   formatData: function() {

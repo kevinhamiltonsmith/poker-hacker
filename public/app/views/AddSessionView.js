@@ -1,6 +1,6 @@
-var AddGameSidebarView = Backbone.View.extend({
+var AddSessionView = Backbone.View.extend({
 
-  className: 'add-game-sidebar-view',
+  className: 'add-session-view',
 
   initialize: function() {
     this.newSesh = new Session();
@@ -57,7 +57,7 @@ var AddGameSidebarView = Backbone.View.extend({
     var profit = this.newSesh.get('cashedOut') - this.newSesh.get('totalBuyin');
     this.newSesh.set({netProfit: profit});
 
-    this.newSesh.trigger('start');
+    this.newSesh.trigger('formatData');
     var self = this;
     this.newSesh.save(null, {
       success: function(newSesh) {

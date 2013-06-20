@@ -77,7 +77,7 @@ var PokerHacker = Backbone.Router.extend({
 
   newSessionSidebar: function() {
     this.setupData = new SetupData(setupData);
-    this.addGameSidebarView = new AddGameSidebarView({model: this.setupData, collection: this.sessions});
-    $('.new-game-sidebar').empty().append(this.addGameSidebarView.render());
+    this.addSessionView = new AddSessionView({model: this.setupData, collection: this.sessions});
+    $('.new-game-sidebar').empty().append(this.addSessionView.render());
   }
 });

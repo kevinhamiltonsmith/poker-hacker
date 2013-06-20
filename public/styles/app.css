@@ -179,16 +179,16 @@ tr .session-note{
 /*
 * New Game Sidebar
 */
-.add-game-sidebar-view h4 {
+.add-session-view h4 {
   text-align: center;
 }
-.add-game-sidebar-view h5 {
+.add-session-view h5 {
   margin: -10px 0 0 10px;
 }
-.add-game-sidebar-view .field {
+.add-session-view .field {
   margin-bottom: 15px;
 }
-.add-game-sidebar-view fieldset {
+.add-session-view fieldset {
   font-size: 1.3em;
 }
 .session-in-progress {
@@ -242,7 +242,7 @@ tr .session-note{
   .sessions .row {
     padding: 8px;
   }
-  .add-game-sidebar-view {
+  .add-session-view {
     margin-top: 80px
   }
   .footer li {
