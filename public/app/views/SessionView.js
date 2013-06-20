@@ -8,13 +8,13 @@ var SessionView = Backbone.View.extend({
         '<h3>Cash Game Session Detail</h3>' +
         '<ul class="three_up tiles sesh-nav">' +
           '<li class="button-bottom prev-sesh-nav">' +
-            '<div class="btn small info metro"><a href="#">Prev Session</a></div>' +
+            '<div class="btn small info metro"><a href="#">Newer Session</a></div>' +
           '</li>' +
           '<li class="button-bottom all-sesh-nav">' +
             '<div class="btn small info metro"><a href="#">All Sessions</a></div>' +
           '</li>' +
           '<li class="button-bottom next-sesh-nav">' +
-            '<div class="btn small info metro"><a href="#">Next Session</a></div>' +
+            '<div class="btn small info metro"><a href="#">Older Session</a></div>' +
           '</li>' +
         '</ul>' +
         '<table class="sesh-detail">' +
@@ -39,7 +39,7 @@ var SessionView = Backbone.View.extend({
   events: {
     "click .prev-sesh-nav a" : function(e){
       e.preventDefault();
-      var seshId = Number(this.model.get('sessionId')) - 1;
+      var seshId = Number(this.model.get('sessionId')) + 1;
       this.sessionNav(seshId);
     },
 
@@ -50,7 +50,7 @@ var SessionView = Backbone.View.extend({
 
     "click .next-sesh-nav a" : function(e){
       e.preventDefault();
-      var seshId = Number(this.model.get('sessionId')) + 1;
+      var seshId = Number(this.model.get('sessionId')) - 1;
       this.sessionNav(seshId);
     },
   },

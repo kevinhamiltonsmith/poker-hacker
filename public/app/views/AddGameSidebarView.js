@@ -26,7 +26,7 @@ var AddGameSidebarView = Backbone.View.extend({
       this.startSeshEvents();
     }, this);
 
-    this.newSesh.on('change:cashedOut', function(){
+    this.newSesh.on('change:netProfit', function(){
       this.endRender();
       this.endSeshEvents();
     }, this);
@@ -34,21 +34,21 @@ var AddGameSidebarView = Backbone.View.extend({
     this.setTime(true);
 
     this.newSesh.set({sessionId: this.collection.models.length + 1});
-    this.newSesh.set({totalBuyin: $('.buyin-input').val()});
+    this.newSesh.set({totalBuyin: parseInt($('.buyin-input').val()) });
     this.newSesh.set({location: $('.locationSelect').val()});
     this.newSesh.set({stakes: $('.stakesSelect').val()});
     this.newSesh.set({game: $('.gamesSelect').val()});
     this.newSesh.set({limitType: $('.limitSelect').val()});
-    
-    // this.newSesh.save(null, {
-    //   success: function(newSesh) {
-    //     alert('New object created with objectId: ' + newSesh.id);
-    //     this.newSesh.trigger('start');
-    //   },
-    //   error: function(newSesh, error) {
-    //     alert('Failed to create new object, with error code: ' + error.description);
-    //   }
-    // });
+
+    this.newSesh.save(null, {
+      success: function(newSesh) {
+        alert('New object created with objectId: ' + newSesh.id);
+        this.newSesh.trigger('start');
+      },
+      error: function(newSesh, error) {
+        alert('Failed to create new object, with error code: ' + error.description);
+      }
+    });
   },
 
   finalizeSesh: function() {
@@ -57,6 +57,7 @@ var AddGameSidebarView = Backbone.View.extend({
     this.newSesh.set({cashedOut: $('.cashout-input').val()});
     var profit = this.newSesh.get('cashedOut') - this.newSesh.get('totalBuyin');
     this.newSesh.set({netProfit: profit});
+    console.log('finalize sesh',this.newSesh)
   },
 
   startSeshEvents: function() {
@@ -68,6 +69,7 @@ var AddGameSidebarView = Backbone.View.extend({
 
   endSeshEvents: function() {
     $('.top-in-progress-alert, .end-session-button, .end-hide').fadeOut('fast');
+    $('.new-sesh-end-time').fadeIn();
     $('.add-game-sidebar-view form fieldset').removeClass('session-in-progress').addClass('session-complete');
   },
 
@@ -116,6 +118,10 @@ var AddGameSidebarView = Backbone.View.extend({
             '</li>' +
             '<li class="field new-sesh-start-time">' +
               '<div class="row"><label class="default label">Start Date, Time</label></div><h5><%= dateStart %></h5>' +
+            '</li>' +
+//TODO
+            '<li class="field new-sesh-end-time">' +
+              '<div class="row"><label class="default label">End Date, Time</label></div><h5><%= dateEnd %></h5>' +
             '</li>' +
             '<li class="field new-sesh-location">' +
               '<div class="row"><label class="default label">Location</label></div>' +
@@ -179,7 +185,7 @@ var AddGameSidebarView = Backbone.View.extend({
   },
 
   endRender: function() {
-    var html = '<h5>$' + this.newSesh.get('cashedOut') + '</h5>';
-    $('.new-sesh-cashout').append(html);
+    var cashOut = '<h5>$' + this.newSesh.get('cashedOut') + '</h5>';
+    $('.new-sesh-cashout').append(cashOut);
   }
 });

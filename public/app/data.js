@@ -10,7 +10,7 @@ var testData = [
     {
     "dateStartRaw":"",
     "dateEndRaw":"",
-    "sessionId":"1",
+    "sessionId":1,
     "dateStart":"4/20/12, 7:47 PM",
     "dateEnd":"4/20/12, 11:04 PM",
     "sessionLength":"3:17",

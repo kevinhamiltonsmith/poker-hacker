@@ -1,9 +1,9 @@
 var Session = Parse.Object.extend({
 
-  className: "SessionTest",
+  className: "TestData",
 
   defaults: {
-    "sessionId":"",
+    "sessionId":99999,
     "dateStart":"",
     "dateEnd":"",
     "sessionLength":"0:00",

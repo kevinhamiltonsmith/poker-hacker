@@ -205,7 +205,7 @@ tr .session-note{
   text-align: center;
   display: none;
 }
-.new-sesh-cashout, .new-sesh-start-time, .start-show, .end-show {
+.new-sesh-cashout, .new-sesh-start-time, .new-sesh-end-time, .start-show, .end-show {
   display: none;
 }
 
