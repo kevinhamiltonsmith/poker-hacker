@@ -10,6 +10,7 @@ for (var i = 0; i < data.length; i++) {
   data[i].dateEndRaw = new Date();
   data[i].sessionId = i+1;
   var testSesh = new Session(data[i]);
+  testSesh.trigger('start');
 
   testSesh.save(null, {
     wait: true,
