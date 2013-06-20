@@ -40,16 +40,14 @@ var AddGameSidebarView = Backbone.View.extend({
     this.newSesh.set({game: $('.gamesSelect').val()});
     this.newSesh.set({limitType: $('.limitSelect').val()});
 
-    // var self = this;
-    // this.newSesh.save(null, {
-    //   success: function(newSesh) {
-    //     alert('New object created with objectId: ' + newSesh.id);
-    //     self.newSesh.trigger('start');
-    //   },
-    //   error: function(newSesh, error) {
-    //     alert('Failed to create new object, with error code: ' + error.description);
-    //   }
-    // });
+    this.newSesh.save(null, {
+      success: function(newSesh) {
+        console.log('New session created with objectId: ' + newSesh.id);
+      },
+      error: function(newSesh, error) {
+        console.log('Failed to create new session, with error code: ' + error.description);
+      }
+    });
   },
 
   finalizeSesh: function() {
@@ -58,6 +56,16 @@ var AddGameSidebarView = Backbone.View.extend({
     this.newSesh.set({cashedOut: parseInt($('.cashout-input').val()) });
     var profit = this.newSesh.get('cashedOut') - this.newSesh.get('totalBuyin');
     this.newSesh.set({netProfit: profit});
+
+    this.newSesh.trigger('start');
+    this.newSesh.save(null, {
+      success: function(newSesh) {
+        console.log('Session finalized with objectId: ' + newSesh.id);
+      },
+      error: function(newSesh, error) {
+        console.log('Failed to finalize session, with error code: ' + error.description);
+      }
+    });
   },
 
   startSeshEvents: function() {
@@ -85,6 +93,9 @@ var AddGameSidebarView = Backbone.View.extend({
     } else {
       this.newSesh.set({dateEndRaw: dt});
       this.newSesh.set({dateEnd: currentDate + ', ' + currentTime});
+      var t = this.newSesh.get('dateEndRaw').getTime() + (1000 * 4000) - this.newSesh.get('dateStartRaw').getTime(),
+      t = this.formatHoursMin(t);
+      this.newSesh.set({sessionLength: t});
     }
   },
 
@@ -97,6 +108,13 @@ var AddGameSidebarView = Backbone.View.extend({
     minutes = minutes < 10 ? '0'+minutes : minutes;
     var strTime = hours + ':' + minutes + ' ' + ampm;
     return strTime;
+  },
+
+  formatHoursMin: function(t) {
+    var hourConst = 60 * 60 * 1000,
+      h = '0' + Math.floor(t / hourConst),
+      m = '0' + Math.round( (t - h * hourConst) / 60000);
+    return [h.substr(-2), m.substr(-2)].join(':');
   },
 
   template: _.template(''+
