@@ -68,8 +68,8 @@ var Sessions = Parse.Collection.extend({
   },
 
   bestSession: function(best) {
-    var bestSesh = this.models[0].get('netProfit');
-    var worstSesh = this.models[0].get('netProfit');
+    var bestSesh = this.models[0] ? this.models[0].get('netProfit') : 0;
+    var worstSesh = this.models[0] ? this.models[0].get('netProfit') : 0;
     _.each(this.models, function(value){
       if (value.get('netProfit') > bestSesh) bestSesh = value.get('netProfit');
       if (value.get('netProfit') < worstSesh) worstSesh = value.get('netProfit');

@@ -16,6 +16,12 @@ var OverviewView = Backbone.View.extend({
   ),
 
   initialize: function() {
+    this.collection.on('sync', function(){
+      this.$el.empty();
+      this.overviewChartView = new OverviewChartView({collection: this.collection});
+      this.render().el;
+      $('.overview-chart-wrapper').empty().append(this.overviewChartView.render());
+    }, this);
   },
 
   render: function(){
@@ -43,6 +49,8 @@ var OverviewView = Backbone.View.extend({
       overView.winRateStdDev = '$' + winRateStdDev;
     }
 
-    return this.$el.html(this.template(overView));
+    this.$el.append(this.template(overView));
+
+    return this;
   }
 });

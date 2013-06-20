@@ -32,6 +32,10 @@ var StatsView = Backbone.View.extend({
   ),
 
   initialize: function() {
+    this.collection.on('sync', function(){
+      this.$el.empty();
+      $('.main-content').empty().append(this.render().el);
+    }, this);
   },
 
   render: function(){
@@ -52,7 +56,8 @@ var StatsView = Backbone.View.extend({
     stats.winStreakSesh = this.collection.sessionStreak(true);
     stats.loseStreakSesh = this.collection.sessionStreak(false);
 
-    return this.$el.html(this.template(stats));
+    this.$el.append(this.template(stats));
+    return this;
   },
 
   addDollar: function(num){

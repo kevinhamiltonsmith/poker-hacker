@@ -29,6 +29,10 @@ var SessionsView = Backbone.View.extend({
   },
 
   initialize: function() {
+    this.collection.on('sync', function(){
+      this.$el.empty();
+      $('.main-content').empty().append(this.render().el);
+    }, this);
   },
 
   render: function(){

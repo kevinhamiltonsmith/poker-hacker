@@ -22,11 +22,7 @@ var PokerHacker = Backbone.Router.extend({
 
   fetchCollection: function() {
     this.sessions = new Sessions();
-    this.sessions.fetch({
-      success: function() {
-        console.log('sessions fetched successfully');
-      }
-    });
+    this.sessions.fetch();
   },
 
   index: function() {
@@ -57,7 +53,7 @@ var PokerHacker = Backbone.Router.extend({
 
   overviewNav: function() {
     this.overviewView = new OverviewView({collection: this.sessions});
-    $('.main-content').empty().append(this.overviewView.render());
+    $('.main-content').empty().append(this.overviewView.render().el);
     this.overviewChartView = new OverviewChartView({collection: this.sessions});
     $('.overview-chart-wrapper').empty().append(this.overviewChartView.render());
     this.newSessionSidebar();
@@ -65,7 +61,7 @@ var PokerHacker = Backbone.Router.extend({
 
   statsNav: function() {
     this.statsView = new StatsView({collection: this.sessions});
-    $('.main-content').empty().append(this.statsView.render());
+    $('.main-content').empty().append(this.statsView.render().el);
     this.newSessionSidebar();
   },
 
