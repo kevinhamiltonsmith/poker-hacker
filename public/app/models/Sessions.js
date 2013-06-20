@@ -2,6 +2,9 @@ var Sessions = Parse.Collection.extend({
   model: Session,
 
   initialize: function() {
+    this.on('add', function(){
+      console.log('new model added to colleciton');
+    }, this);
   },
 
   totalSessions: function() {

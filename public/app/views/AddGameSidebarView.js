@@ -58,9 +58,11 @@ var AddGameSidebarView = Backbone.View.extend({
     this.newSesh.set({netProfit: profit});
 
     this.newSesh.trigger('start');
+    var self = this;
     this.newSesh.save(null, {
       success: function(newSesh) {
         console.log('Session finalized with objectId: ' + newSesh.id);
+        self.collection.add(self.newSesh);
       },
       error: function(newSesh, error) {
         console.log('Failed to finalize session, with error code: ' + error.description);
@@ -93,6 +95,7 @@ var AddGameSidebarView = Backbone.View.extend({
     } else {
       this.newSesh.set({dateEndRaw: dt});
       this.newSesh.set({dateEnd: currentDate + ', ' + currentTime});
+//TODO: get rid of this time addition
       var t = this.newSesh.get('dateEndRaw').getTime() + (1000 * 4000) - this.newSesh.get('dateStartRaw').getTime(),
       t = this.formatHoursMin(t);
       this.newSesh.set({sessionLength: t});
