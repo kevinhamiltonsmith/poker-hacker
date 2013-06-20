@@ -40,24 +40,24 @@ var AddGameSidebarView = Backbone.View.extend({
     this.newSesh.set({game: $('.gamesSelect').val()});
     this.newSesh.set({limitType: $('.limitSelect').val()});
 
-    this.newSesh.save(null, {
-      success: function(newSesh) {
-        alert('New object created with objectId: ' + newSesh.id);
-        this.newSesh.trigger('start');
-      },
-      error: function(newSesh, error) {
-        alert('Failed to create new object, with error code: ' + error.description);
-      }
-    });
+    // var self = this;
+    // this.newSesh.save(null, {
+    //   success: function(newSesh) {
+    //     alert('New object created with objectId: ' + newSesh.id);
+    //     self.newSesh.trigger('start');
+    //   },
+    //   error: function(newSesh, error) {
+    //     alert('Failed to create new object, with error code: ' + error.description);
+    //   }
+    // });
   },
 
   finalizeSesh: function() {
     this.setTime(false);
 
-    this.newSesh.set({cashedOut: $('.cashout-input').val()});
+    this.newSesh.set({cashedOut: parseInt($('.cashout-input').val()) });
     var profit = this.newSesh.get('cashedOut') - this.newSesh.get('totalBuyin');
     this.newSesh.set({netProfit: profit});
-    console.log('finalize sesh',this.newSesh)
   },
 
   startSeshEvents: function() {
@@ -119,9 +119,8 @@ var AddGameSidebarView = Backbone.View.extend({
             '<li class="field new-sesh-start-time">' +
               '<div class="row"><label class="default label">Start Date, Time</label></div><h5><%= dateStart %></h5>' +
             '</li>' +
-//TODO
             '<li class="field new-sesh-end-time">' +
-              '<div class="row"><label class="default label">End Date, Time</label></div><h5><%= dateEnd %></h5>' +
+              '<div class="row"><label class="default label">End Date, Time</label></div>' +
             '</li>' +
             '<li class="field new-sesh-location">' +
               '<div class="row"><label class="default label">Location</label></div>' +
@@ -187,5 +186,7 @@ var AddGameSidebarView = Backbone.View.extend({
   endRender: function() {
     var cashOut = '<h5>$' + this.newSesh.get('cashedOut') + '</h5>';
     $('.new-sesh-cashout').append(cashOut);
+    var endTime = '<h5>' + this.newSesh.get('dateEnd') + '</h5>';
+    $('.new-sesh-end-time').append(endTime);
   }
 });

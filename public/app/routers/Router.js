@@ -46,9 +46,10 @@ var PokerHacker = Backbone.Router.extend({
 
   sessionNav: function(id) {
     var query = new Parse.Query(Session);
-    query.equalTo("sessionId", id);
+    query.equalTo("sessionId", parseInt(id));
     query.find({
       success: function(results) {
+        console.log(results)
         results[0].trigger('start');
         this.session = results[0];
         this.sessionView = new SessionView({model: this.session});

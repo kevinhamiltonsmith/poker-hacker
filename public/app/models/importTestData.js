@@ -1,3 +1,5 @@
+//quick and dirty import function for Poker Journal data
+
 console.log('TEST DATA')
 var data = testData;
 

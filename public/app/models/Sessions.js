@@ -27,7 +27,7 @@ var Sessions = Parse.Collection.extend({
   totalHours: function() {
     return this.reduce(function(memo, value){
       var timeParts = value.get('sessionLength').split(/:/);
-      var timePeriodHours = (parseInt(timeParts[0], 10)) + (parseInt(timeParts[1], 10) / 60) + (parseInt(timeParts[2], 10) / 3600);
+      var timePeriodHours = (parseInt(timeParts[0], 10)) + (parseInt(timeParts[1], 10) / 60);
       return memo + timePeriodHours;
     }, 0).toFixed(2);
   },
@@ -44,7 +44,7 @@ var Sessions = Parse.Collection.extend({
     var dollarPerHour = this.winRate();
     var variance = this.reduce(function(memo, value){
       var timeParts = value.get('sessionLength').split(/:/);
-      var singleHours = (parseInt(timeParts[0], 10)) + (parseInt(timeParts[1], 10) / 60) + (parseInt(timeParts[2], 10) / 3600);
+      var singleHours = (parseInt(timeParts[0], 10)) + (parseInt(timeParts[1], 10) / 60);
       var singleVariance = Math.pow(((value.get('netProfit') / singleHours) - dollarPerHour), 2);
       return memo + singleVariance;
     }, 0);
