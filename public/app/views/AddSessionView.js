@@ -20,6 +20,14 @@ var AddSessionView = Backbone.View.extend({
       e.preventDefault();
       var id = $(e.currentTarget).data("session-id");
       this.sessionNav(id);
+    },
+
+    'change .toggle-switch .switch': function(e) {
+      if ($('#live-game').is(':checked')){
+        console.log('live game');
+      } else if ($('#completed-game').is(':checked')) {
+        console.log('completed game');
+      }
     }
   },
 
@@ -48,14 +56,14 @@ var AddSessionView = Backbone.View.extend({
       this.newSesh.set({game: $('.gamesSelect').val()});
       this.newSesh.set({limitType: $('.limitSelect').val()});
 //TODO: turned off save for testing
-      this.newSesh.save(null, {
-        success: function(newSesh) {
-          console.log('New session created with objectId: ' + newSesh.id);
-        },
-        error: function(newSesh, error) {
-          console.log('Failed to create new session, with error code: ' + error.description);
-        }
-      });
+      // this.newSesh.save(null, {
+      //   success: function(newSesh) {
+      //     console.log('New session created with objectId: ' + newSesh.id);
+      //   },
+      //   error: function(newSesh, error) {
+      //     console.log('Failed to create new session, with error code: ' + error.description);
+      //   }
+      // });
     } else {
       this.inputError();
     }
@@ -71,18 +79,18 @@ var AddSessionView = Backbone.View.extend({
 
     this.newSesh.trigger('formatData');
 //TODO: delete this line after testing is complete
-    // this.collection.add(this.newSesh);
+    this.collection.add(this.newSesh);
 //TODO: turned off save for testing
-    var self = this;
-    this.newSesh.save(null, {
-      success: function(newSesh) {
-        console.log('Session finalized with objectId: ' + newSesh.id);
-        self.collection.add(self.newSesh);
-      },
-      error: function(newSesh, error) {
-        console.log('Failed to finalize session, with error code: ' + error.description);
-      }
-    });
+    // var self = this;
+    // this.newSesh.save(null, {
+    //   success: function(newSesh) {
+    //     console.log('Session finalized with objectId: ' + newSesh.id);
+    //     self.collection.add(self.newSesh);
+    //   },
+    //   error: function(newSesh, error) {
+    //     console.log('Failed to finalize session, with error code: ' + error.description);
+    //   }
+    // });
   },
 
   startSeshEvents: function() {
@@ -146,7 +154,19 @@ var AddSessionView = Backbone.View.extend({
     '<h3>New Cash Game Session</h3>' +
     '<form id="new-session">' +
       '<div class="row">' +
-        '<fieldset class="centered ten columns">' +
+        '<fieldset class="centered">' +
+          '<div class="row toggle-switch">' +
+            '<div class="centered">' +
+              '<label class="switch-label">Choose:</label>' +
+              '<div class="switch android">' +
+                '<input id="live-game" name="view" type="radio" checked>' +
+                '<label for="live-game" onclick="">Live Game</label>' +
+                '<input id="completed-game" name="view" type="radio">' +
+                '<label for="completed-game" onclick="">Completed Game</label>' +
+                '<span class="slide-button"></span>' +
+              '</div>' +
+            '</div>' +
+          '</div>' +
           '<ul>' +
             '<li class="prepend field new-sesh-cashout">' +
               '<div class="row"><label class="default label">Cash Out</label></div>' +

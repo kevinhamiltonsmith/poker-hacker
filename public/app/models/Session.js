@@ -16,7 +16,10 @@ var Session = Parse.Object.extend({
     "totalBuyin":0,
     "cashedOut":0,
     "netProfit":0,
-    "note":""
+    "note":"",
+    "parenProfit":"",
+    "profitClass":"",
+    "data":""
   },
 
   initialize: function() {

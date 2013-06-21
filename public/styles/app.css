@@ -213,6 +213,9 @@ tr .session-note{
 .new-sesh-cashout, .new-sesh-start-time, .new-sesh-end-time, .start-show, .end-show {
   display: none;
 }
+.toggle-switch {
+  margin-bottom: 40px;
+}
 
 
 /*
