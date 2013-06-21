@@ -74,7 +74,7 @@ var PokerHacker = Backbone.Router.extend({
   newSession: function() {
     this.setupData = new SetupData(setupData);
     this.addSessionView = new AddSessionView({model: this.setupData, collection: this.sessions});
-    $('.main-content').empty().append(this.addSessionView.render());
+    $('.main-content').empty().append(this.addSessionView.render().el);
     this.appSidebar();
   },
 

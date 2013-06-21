@@ -4,6 +4,7 @@ var AddSessionView = Backbone.View.extend({
 
   initialize: function() {
     this.newSesh = new Session();
+    this.isNewSession = true;
   },
 
   events: {
@@ -24,18 +25,34 @@ var AddSessionView = Backbone.View.extend({
 
     'change .toggle-switch .switch': function(e) {
       if ($('#live-game').is(':checked')){
-        console.log('live game');
+        this.isNewSession = true;
+        this.liveGame();
       } else if ($('#completed-game').is(':checked')) {
-        console.log('completed game');
+        this.isNewSession = false;
+        this.completedGame();
       }
     }
+  },
+
+  liveGame: function() {
+    $('.new-sesh-start-time').hide();
+    $('.new-sesh-end-time').hide();
+  },
+
+  completedGame: function() {
+    $('.new-sesh-start-time').show();
+    $('.new-sesh-end-time').show();
+    $.extend($.datepicker,{_checkOffset:function(inst,offset,isFixed){return offset}});
+    $('#picker-start-date, #picker-end-date').datetimepicker({
+      timeFormat: "hh:mm tt"
+    });
   },
 
   createNewSesh: function() {
     this.newSesh = new Session();
 
     this.newSesh.on('change:limitType', function(){
-      this.render();
+      this.render().el;
       this.startSeshEvents();
     }, this);
 
@@ -44,7 +61,12 @@ var AddSessionView = Backbone.View.extend({
       this.endSeshEvents();
     }, this);
 
-    this.setTime(true);
+    if (this.isNewSession) {
+      this.setTime(true);
+    } else {
+      //format time for completed session in the past
+      this.setTime(true, true);
+    }
 
     this.newSesh.set({sessionId: this.collection.models.length + 1});
 
@@ -70,7 +92,11 @@ var AddSessionView = Backbone.View.extend({
   },
 
   finalizeSesh: function() {
-    this.setTime(false);
+    if (this.isNewSession) {
+      this.setTime(false);
+    } else {
+      this.setTime(true, true);
+    }
 
     var cashout = $('.cashout-input').val() ? parseInt($('.cashout-input').val()) : 0;
     this.newSesh.set({cashedOut: cashout});
@@ -94,7 +120,7 @@ var AddSessionView = Backbone.View.extend({
   },
 
   startSeshEvents: function() {
-    $('.start-hide').hide();
+    $('.start-hide, .toggle-switch, .new-sesh-start-time input').hide();
     $('.session-submit-button').fadeOut('slow', function(){
         $(this).removeClass('success').addClass('danger').fadeIn('slow');
         $('.session-submit-button input').val('End Session');
@@ -104,13 +130,17 @@ var AddSessionView = Backbone.View.extend({
   },
 
   endSeshEvents: function() {
-    $('.top-in-progress-alert, .end-hide, .session-submit-button').hide();
+    $('.top-in-progress-alert, .end-hide, .session-submit-button, .new-sesh-end-time input').hide();
     $('.new-sesh-end-time').fadeIn();
     $('.add-session-view form fieldset').removeClass('session-in-progress').addClass('session-complete');
   },
 
-  setTime: function(start) {
-    var dt = new Date();
+  setTime: function(start, jsDate) {
+    if (jsDate) {
+      var dt = new Date(pickerDate);
+    } else {
+      var dt = new Date();
+    }
     var currentDate = dt.getMonth() + 1 + "/" + dt.getDate() + "/" + dt.getFullYear();
     var currentTime = this.formatAMPM(dt);
     if (start) {
@@ -181,9 +211,11 @@ var AddSessionView = Backbone.View.extend({
             '</li>' +
             '<li class="field new-sesh-start-time">' +
               '<div class="row"><label class="default label">Start Date, Time</label></div><h5><%= dateStart %></h5>' +
+              '<input id="picker-start-date" class="wide text input" type="text" />' +
             '</li>' +
             '<li class="field new-sesh-end-time">' +
               '<div class="row"><label class="default label">End Date, Time</label></div>' +
+              '<input id="picker-end-date" class="wide text input" type="text" />' +
             '</li>' +
             '<li class="field new-sesh-location">' +
               '<div class="row"><label class="default label">Location</label></div>' +
@@ -238,7 +270,8 @@ var AddSessionView = Backbone.View.extend({
 
   render: function() {
     var allData = $.extend({}, this.model.attributes, this.newSesh.attributes);
-    return this.$el.html(this.template(allData));
+    this.$el.empty().append(this.template(allData));
+    return this;
   },
 
   endRender: function() {

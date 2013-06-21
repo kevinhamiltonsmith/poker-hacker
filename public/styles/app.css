@@ -217,6 +217,26 @@ tr .session-note{
   margin-bottom: 40px;
 }
 
+/*
+* Time Picker
+*/
+.ui-widget, .ui-timepicker-div { font-size: 0.8em; }
+.ui-datepicker { z-index: 9999 !important; }
+
+.ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+.ui-timepicker-div dl { text-align: left; }
+.ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; font-size: 0.8rem;}
+.ui-timepicker-div dl dd { margin: 0 10px 15px 65px; }
+.ui-timepicker-div td { font-size: 90%; }
+.ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+#ui-datepicker-div .ui-timepicker-div dl .ui_tpicker_time { margin-bottom: 0px; }
+#ui-datepicker-div .ui-timepicker-div dl .ui_tpicker_hour { margin-top: 10px; }
+#ui-datepicker-div .ui-timepicker-div dl .ui_tpicker_minute { margin-top: 10px; }
+
+.ui-timepicker-rtl{ direction: rtl; }
+.ui-timepicker-rtl dl { text-align: right; }
+.ui-timepicker-rtl dl dd { margin: 0 65px 10px 10px; }
+
 
 /*
 * Footer
