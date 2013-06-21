@@ -5,7 +5,8 @@ var PokerHacker = Backbone.Router.extend({
     "session/all": "sessionsNav",
     "session/:id": "sessionNav",
     "overview": "overviewNav",
-    "stats": "statsNav"
+    "stats": "statsNav",
+    "newsession": "newSession"
   },
 
   initialize: function() {
@@ -39,7 +40,7 @@ var PokerHacker = Backbone.Router.extend({
   sessionsNav: function() {
     this.sessionsView = new SessionsView({collection: this.sessions});
     $('.main-content').empty().append(this.sessionsView.render().el);
-    this.newSessionSidebar();
+    this.appSidebar();
   },
 
   sessionNav: function(id) {
@@ -53,7 +54,7 @@ var PokerHacker = Backbone.Router.extend({
         $('.main-content').empty().append(this.sessionView.render());
       }
     });
-    this.newSessionSidebar();
+    this.appSidebar();
   },
 
   overviewNav: function() {
@@ -61,23 +62,28 @@ var PokerHacker = Backbone.Router.extend({
     $('.main-content').empty().append(this.overviewView.render().el);
     this.overviewChartView = new OverviewChartView({collection: this.sessions});
     $('.overview-chart-wrapper').empty().append(this.overviewChartView.render());
-    this.newSessionSidebar();
+    this.appSidebar();
   },
 
   statsNav: function() {
     this.statsView = new StatsView({collection: this.sessions});
     $('.main-content').empty().append(this.statsView.render().el);
-    this.newSessionSidebar();
+    this.appSidebar();
+  },
+
+  newSession: function() {
+    this.setupData = new SetupData(setupData);
+    this.addSessionView = new AddSessionView({model: this.setupData, collection: this.sessions});
+    $('.main-content').empty().append(this.addSessionView.render());
+    this.appSidebar();
   },
 
   loginSidebar: function() {
     this.loginView = new LoginView();
-    $('.new-game-sidebar').empty().append(this.loginView.render());
+    $('.app-sidebar').empty().append(this.loginView.render());
   },
 
-  newSessionSidebar: function() {
-    this.setupData = new SetupData(setupData);
-    this.addSessionView = new AddSessionView({model: this.setupData, collection: this.sessions});
-    $('.new-game-sidebar').empty().append(this.addSessionView.render());
+  appSidebar: function() {
+    $('.app-sidebar').empty().append('<h4>Future Sidebar Content</h4>');
   }
 });

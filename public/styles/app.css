@@ -177,9 +177,9 @@ tr .session-note{
 }
 
 /*
-* New Game Sidebar
+* Add Session
 */
-.add-session-view h4 {
+.add-session-view h4, .add-session-view h3 {
   text-align: center;
 }
 .add-session-view h5 {

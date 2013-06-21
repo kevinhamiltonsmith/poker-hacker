@@ -34,40 +34,46 @@ var AddSessionView = Backbone.View.extend({
     this.setTime(true);
 
     this.newSesh.set({sessionId: this.collection.models.length + 1});
-    this.newSesh.set({totalBuyin: parseInt($('.buyin-input').val()) });
+    var buyin = $('.buyin-input').val() ? parseInt($('.buyin-input').val()) : 0;
+    this.newSesh.set({totalBuyin: buyin});
     this.newSesh.set({location: $('.locationSelect').val()});
     this.newSesh.set({stakes: $('.stakesSelect').val()});
     this.newSesh.set({game: $('.gamesSelect').val()});
     this.newSesh.set({limitType: $('.limitSelect').val()});
 
-    this.newSesh.save(null, {
-      success: function(newSesh) {
-        console.log('New session created with objectId: ' + newSesh.id);
-      },
-      error: function(newSesh, error) {
-        console.log('Failed to create new session, with error code: ' + error.description);
-      }
-    });
+//TODO: turned off save for testing
+    // this.newSesh.save(null, {
+    //   success: function(newSesh) {
+    //     console.log('New session created with objectId: ' + newSesh.id);
+    //   },
+    //   error: function(newSesh, error) {
+    //     console.log('Failed to create new session, with error code: ' + error.description);
+    //   }
+    // });
   },
 
   finalizeSesh: function() {
     this.setTime(false);
 
-    this.newSesh.set({cashedOut: parseInt($('.cashout-input').val()) });
+    var cashout = $('.cashout-input').val() ? parseInt($('.cashout-input').val()) : 0;
+    this.newSesh.set({cashedOut: cashout});
     var profit = this.newSesh.get('cashedOut') - this.newSesh.get('totalBuyin');
     this.newSesh.set({netProfit: profit});
 
     this.newSesh.trigger('formatData');
-    var self = this;
-    this.newSesh.save(null, {
-      success: function(newSesh) {
-        console.log('Session finalized with objectId: ' + newSesh.id);
-        self.collection.add(self.newSesh);
-      },
-      error: function(newSesh, error) {
-        console.log('Failed to finalize session, with error code: ' + error.description);
-      }
-    });
+//TODO: delete this line after testing is complete
+    this.collection.add(this.newSesh);
+//TODO: turned off save for testing
+    // var self = this;
+    // this.newSesh.save(null, {
+    //   success: function(newSesh) {
+    //     console.log('Session finalized with objectId: ' + newSesh.id);
+    //     self.collection.add(self.newSesh);
+    //   },
+    //   error: function(newSesh, error) {
+    //     console.log('Failed to finalize session, with error code: ' + error.description);
+    //   }
+    // });
   },
 
   startSeshEvents: function() {
@@ -121,10 +127,11 @@ var AddSessionView = Backbone.View.extend({
   },
 
   template: _.template(''+
+    '<h3>New Cash Game Session</h3>' +
     '<form>' +
       '<div class="row">' +
-        '<fieldset class="twelve columns">' +
-          '<legend>New Cash Game Session</legend>' +
+        '<fieldset class="centered ten columns">' +
+          // '<legend>New Cash Game Session</legend>' +
           '<ul>' +
             '<li class="prepend field new-sesh-cashout">' +
               '<div class="row"><label class="default label">Cash Out</label></div>' +
