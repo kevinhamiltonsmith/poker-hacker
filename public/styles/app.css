@@ -191,19 +191,24 @@ tr .session-note{
 .add-session-view fieldset {
   font-size: 1.3em;
 }
+.add-session-view ul .badge {
+  margin-bottom: 30px;
+  text-align: center;
+  width: 100%;
+}
 .session-in-progress {
   border-color: #ca3838;
 }
 .session-complete {
   border-color: #58c026;
 }
-.new-session-button {
+.session-submit-button {
   text-align: center;
   margin-top: 30px;
 }
-.end-session-button {
-  text-align: center;
-  display: none;
+.session-submit-button input {
+  color: #fff;
+  padding: 5px;
 }
 .new-sesh-cashout, .new-sesh-start-time, .new-sesh-end-time, .start-show, .end-show {
   display: none;

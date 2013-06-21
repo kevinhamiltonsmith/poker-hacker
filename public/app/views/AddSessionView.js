@@ -7,15 +7,18 @@ var AddSessionView = Backbone.View.extend({
   },
 
   events: {
-    'click .new-session-button': function(event){
-      event.preventDefault();
-      this.createNewSesh();
+    'submit #new-session': function(e){
+      e.preventDefault();
+      if ($('.session-submit-button input').val() == "Start Session"){
+        this.createNewSesh();
+      } else {
+        this.finalizeSesh();
+      }
     },
 
-    'click .end-session-button': function(event){
-      event.preventDefault();
-      this.finalizeSesh();
-    },
+    'click .view-this-sesh': function(e){
+      e.preventDefault();
+    }
   },
 
   createNewSesh: function() {
@@ -34,22 +37,26 @@ var AddSessionView = Backbone.View.extend({
     this.setTime(true);
 
     this.newSesh.set({sessionId: this.collection.models.length + 1});
-    var buyin = $('.buyin-input').val() ? parseInt($('.buyin-input').val()) : 0;
-    this.newSesh.set({totalBuyin: buyin});
-    this.newSesh.set({location: $('.locationSelect').val()});
-    this.newSesh.set({stakes: $('.stakesSelect').val()});
-    this.newSesh.set({game: $('.gamesSelect').val()});
-    this.newSesh.set({limitType: $('.limitSelect').val()});
 
+    if ($('.buyin-input').val()) {
+      var buyin = parseInt($('.buyin-input').val());
+      this.newSesh.set({totalBuyin: buyin});
+      this.newSesh.set({location: $('.locationSelect').val()});
+      this.newSesh.set({stakes: $('.stakesSelect').val()});
+      this.newSesh.set({game: $('.gamesSelect').val()});
+      this.newSesh.set({limitType: $('.limitSelect').val()});
 //TODO: turned off save for testing
-    // this.newSesh.save(null, {
-    //   success: function(newSesh) {
-    //     console.log('New session created with objectId: ' + newSesh.id);
-    //   },
-    //   error: function(newSesh, error) {
-    //     console.log('Failed to create new session, with error code: ' + error.description);
-    //   }
-    // });
+      // this.newSesh.save(null, {
+      //   success: function(newSesh) {
+      //     console.log('New session created with objectId: ' + newSesh.id);
+      //   },
+      //   error: function(newSesh, error) {
+      //     console.log('Failed to create new session, with error code: ' + error.description);
+      //   }
+      // });
+    } else {
+      this.inputError();
+    }
   },
 
   finalizeSesh: function() {
@@ -77,16 +84,19 @@ var AddSessionView = Backbone.View.extend({
   },
 
   startSeshEvents: function() {
-    $('.new-session-button, .start-hide').hide();
-    $('.end-session-button').fadeIn('slow');
+    $('.start-hide').hide();
+    $('.session-submit-button').fadeOut('slow', function(){
+        $(this).removeClass('success').addClass('danger').fadeIn('slow');
+        $('.session-submit-button input').val('End Session');
+      });
     $('.top-in-progress-alert, .new-sesh-cashout, .start-show, .new-sesh-start-time').fadeIn();
-    $('.add-game-sidebar-view form fieldset').addClass('session-in-progress');
+    $('.add-session-view form fieldset').addClass('session-in-progress');
   },
 
   endSeshEvents: function() {
-    $('.top-in-progress-alert, .end-session-button, .end-hide').fadeOut('fast');
+    $('.top-in-progress-alert, .end-hide, .session-submit-button').hide();
     $('.new-sesh-end-time').fadeIn();
-    $('.add-game-sidebar-view form fieldset').removeClass('session-in-progress').addClass('session-complete');
+    $('.add-session-view form fieldset').removeClass('session-in-progress').addClass('session-complete');
   },
 
   setTime: function(start) {
@@ -101,7 +111,7 @@ var AddSessionView = Backbone.View.extend({
     } else {
       this.newSesh.set({dateEndRaw: dt});
       this.newSesh.set({dateEnd: currentDate + ', ' + currentTime});
-//TODO: get rid of this time addition
+//TODO: get rid of this time addition after testing
       var t = this.newSesh.get('dateEndRaw').getTime() + (1000 * 4000) - this.newSesh.get('dateStartRaw').getTime(),
       t = this.formatHoursMin(t);
       this.newSesh.set({sessionLength: t});
@@ -126,12 +136,15 @@ var AddSessionView = Backbone.View.extend({
     return [h.substr(-2), m.substr(-2)].join(':');
   },
 
+  inputError: function() {
+    $('.new-sesh-buyin, .new-sesh-buyin span').addClass('danger');
+  },
+
   template: _.template(''+
     '<h3>New Cash Game Session</h3>' +
-    '<form>' +
+    '<form id="new-session">' +
       '<div class="row">' +
         '<fieldset class="centered ten columns">' +
-          // '<legend>New Cash Game Session</legend>' +
           '<ul>' +
             '<li class="prepend field new-sesh-cashout">' +
               '<div class="row"><label class="default label">Cash Out</label></div>' +
@@ -191,13 +204,8 @@ var AddSessionView = Backbone.View.extend({
               '<h5 class="start-show"><%= game %></h5>' +
             '</li>' +
             '<li>' +
-              '<div class="new-session-button">' +
-                '<div class="btn medium success metro"><a href="#">Start Session</a></div>' +
-              '</div>' +
-            '</li>' +
-            '<li>' +
-              '<div class="end-session-button">' +
-                '<div class="btn medium danger metro"><a href="#">End Session</a></div>' +
+              '<div class="session-submit-button btn medium success metro">' +
+                '<input type="submit" value="Start Session"></input>' +
               '</div>' +
             '</li>' +
           '</ul>' +
@@ -212,6 +220,9 @@ var AddSessionView = Backbone.View.extend({
   },
 
   endRender: function() {
+    $('.add-session-view ul')
+      .append('<div class="medium info btn view-this-sesh"><a href="#">View This Session</a></div>')
+      .prepend('<li class="success badge save-success">Session saved successfully!</li>');
     var cashOut = '<h5>$' + this.newSesh.get('cashedOut') + '</h5>';
     $('.new-sesh-cashout').append(cashOut);
     var endTime = '<h5>' + this.newSesh.get('dateEnd') + '</h5>';
