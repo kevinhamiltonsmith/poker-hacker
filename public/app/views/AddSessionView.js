@@ -18,6 +18,8 @@ var AddSessionView = Backbone.View.extend({
 
     'click .view-this-sesh': function(e){
       e.preventDefault();
+      var id = $(e.currentTarget).data("session-id");
+      this.sessionNav(id);
     }
   },
 
@@ -46,14 +48,14 @@ var AddSessionView = Backbone.View.extend({
       this.newSesh.set({game: $('.gamesSelect').val()});
       this.newSesh.set({limitType: $('.limitSelect').val()});
 //TODO: turned off save for testing
-      // this.newSesh.save(null, {
-      //   success: function(newSesh) {
-      //     console.log('New session created with objectId: ' + newSesh.id);
-      //   },
-      //   error: function(newSesh, error) {
-      //     console.log('Failed to create new session, with error code: ' + error.description);
-      //   }
-      // });
+      this.newSesh.save(null, {
+        success: function(newSesh) {
+          console.log('New session created with objectId: ' + newSesh.id);
+        },
+        error: function(newSesh, error) {
+          console.log('Failed to create new session, with error code: ' + error.description);
+        }
+      });
     } else {
       this.inputError();
     }
@@ -69,18 +71,18 @@ var AddSessionView = Backbone.View.extend({
 
     this.newSesh.trigger('formatData');
 //TODO: delete this line after testing is complete
-    this.collection.add(this.newSesh);
+    // this.collection.add(this.newSesh);
 //TODO: turned off save for testing
-    // var self = this;
-    // this.newSesh.save(null, {
-    //   success: function(newSesh) {
-    //     console.log('Session finalized with objectId: ' + newSesh.id);
-    //     self.collection.add(self.newSesh);
-    //   },
-    //   error: function(newSesh, error) {
-    //     console.log('Failed to finalize session, with error code: ' + error.description);
-    //   }
-    // });
+    var self = this;
+    this.newSesh.save(null, {
+      success: function(newSesh) {
+        console.log('Session finalized with objectId: ' + newSesh.id);
+        self.collection.add(self.newSesh);
+      },
+      error: function(newSesh, error) {
+        console.log('Failed to finalize session, with error code: ' + error.description);
+      }
+    });
   },
 
   startSeshEvents: function() {
@@ -221,11 +223,15 @@ var AddSessionView = Backbone.View.extend({
 
   endRender: function() {
     $('.add-session-view ul')
-      .append('<div class="medium info btn view-this-sesh"><a href="#">View This Session</a></div>')
+      .append('<div class="medium info btn view-this-sesh" data-session-id="' + this.newSesh.get('sessionId') + '"><a href="#">Session Details</a></div>')
       .prepend('<li class="success badge save-success">Session saved successfully!</li>');
     var cashOut = '<h5>$' + this.newSesh.get('cashedOut') + '</h5>';
     $('.new-sesh-cashout').append(cashOut);
     var endTime = '<h5>' + this.newSesh.get('dateEnd') + '</h5>';
     $('.new-sesh-end-time').append(endTime);
+  },
+
+  sessionNav: function(id) {
+    pokerHacker.navigate('session/' + id, true);
   }
 });
