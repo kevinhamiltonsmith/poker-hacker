@@ -10,10 +10,10 @@ var AddSessionView = Backbone.View.extend({
   events: {
     'submit #new-session': function(e){
       e.preventDefault();
-      if ($('.session-submit-button input').val() == "Start Session"){
-        this.createNewSesh();
-      } else {
+      if ($('.session-submit-button input').val() == "End Session"){
         this.finalizeSesh();
+      } else {
+        this.createNewSesh();
       }
     },
 
@@ -36,14 +36,13 @@ var AddSessionView = Backbone.View.extend({
 
   //live session toggle switch display properties
   liveGame: function() {
-    $('.new-sesh-start-time').hide();
-    $('.new-sesh-end-time').hide();
+    $('.new-sesh-start-time, .new-sesh-end-time, .new-sesh-cashout').hide();
   },
 
   //past session toggle switch display properties
   completedGame: function() {
-    $('.new-sesh-start-time').show();
-    $('.new-sesh-end-time').show();
+    $('.new-sesh-start-time, .new-sesh-cashout, .new-sesh-end-time').show();
+    $('.session-submit-button input').val('Add Session');
     $.extend($.datepicker,{_checkOffset:function(inst,offset,isFixed){return offset}});
     $('#picker-start-date, #picker-end-date').datetimepicker({
       timeFormat: "hh:mm tt"
@@ -73,7 +72,8 @@ var AddSessionView = Backbone.View.extend({
       this.setTime(true, startDate);
       var endDate = Date.parse($('#picker-end-date').val());
       this.setTime(false, endDate);
-      console.log(endDate)
+      var cashout = $('.cashout-input').val() ? parseInt($('.cashout-input').val()) : 0;
+      this.newSesh.set({cashedOut: cashout});
     }
 
     this.newSesh.set({sessionId: this.collection.models.length + 1});
@@ -106,10 +106,10 @@ var AddSessionView = Backbone.View.extend({
   finalizeSesh: function() {
     if (this.isNewSession) {
       this.setTime(false);
+      var cashout = $('.cashout-input').val() ? parseInt($('.cashout-input').val()) : 0;
+      this.newSesh.set({cashedOut: cashout});
     }
 
-    var cashout = $('.cashout-input').val() ? parseInt($('.cashout-input').val()) : 0;
-    this.newSesh.set({cashedOut: cashout});
     var profit = this.newSesh.get('cashedOut') - this.newSesh.get('totalBuyin');
     this.newSesh.set({netProfit: profit});
 
@@ -132,10 +132,8 @@ var AddSessionView = Backbone.View.extend({
   startSeshEvents: function() {
     $('.start-hide, .toggle-switch, .new-sesh-start-time input').hide();
     $('.session-submit-button').fadeOut('slow', function(){
-        if (this.isNewSession) {
-          $(this).removeClass('success').addClass('danger').fadeIn('slow');
-          $('.session-submit-button input').val('End Session');
-        }
+        $(this).removeClass('success').addClass('danger').fadeIn('slow');
+        $('.session-submit-button input').val('End Session');
       });
     $('.top-in-progress-alert, .new-sesh-cashout, .start-show, .new-sesh-start-time').fadeIn();
     $('.add-session-view form fieldset').addClass('session-in-progress');
@@ -208,16 +206,16 @@ var AddSessionView = Backbone.View.extend({
             '</div>' +
           '</div>' +
           '<ul>' +
-            '<li class="prepend field new-sesh-cashout">' +
-              '<div class="row"><label class="default label">Cash Out</label></div>' +
-              '<span class="adjoined end-hide">$</span>' +
-              '<input class="wide text input cashout-input end-hide" type="text" placeholder="Cash Out" />' +
-            '</li>' +
             '<li class="prepend field new-sesh-buyin">' +
               '<div class="row"><label class="default label">Initial Buyin</label></div>' +
               '<span class="adjoined start-hide">$</span>' +
               '<input class="wide text input start-hide buyin-input" type="text" placeholder="Buyin" />' +
               '<h5 class="start-show">$<%= totalBuyin %></h5>' +
+            '</li>' +
+           '<li class="prepend field new-sesh-cashout">' +
+              '<div class="row"><label class="default label">Cash Out</label></div>' +
+              '<span class="adjoined end-hide">$</span>' +
+              '<input class="wide text input cashout-input end-hide" type="text" placeholder="Cash Out" />' +
             '</li>' +
             '<li class="field new-sesh-start-time">' +
               '<div class="row"><label class="default label">Start Date, Time</label></div><h5><%= dateStart %></h5>' +
