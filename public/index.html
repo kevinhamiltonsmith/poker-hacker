@@ -4,6 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Poker Hacker</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <link href="lib/gumby/css/gumby.css" rel="stylesheet">
     <link href="lib/toggle-switch.css" rel="stylesheet">
     <link href="lib/jquery-ui/css/smoothness/jquery-ui-1.10.3.custom.min.css" rel="stylesheet">
@@ -17,6 +18,31 @@
     <script src="lib/date.js"></script>
   </head>
   <body>
+    <div id="fb-root"></div>
+    <script>
+      window.fbAsyncInit = function() {
+        // init the FB JS SDK
+        FB.init({
+          appId      : '478839102195567',
+          channelUrl : '//pokerhacker.herokuapp.com/channel.html',
+          status     : true,                                 // Check Facebook Login status
+          cookie     : true,                                 // enable cookies to allow the server to access the session
+          xfbml      : true                                  // Look for social plugins on the page
+        });
+
+        // Additional initialization code such as adding Event Listeners goes here
+      };
+
+      // Load the SDK asynchronously
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/all.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
+
     <script src="lib/d3.v3.min.js"></script>
     <script src="lib/jquery-ui-time-picker.js"></script>
 
