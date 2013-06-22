@@ -85,15 +85,15 @@ var AddSessionView = Backbone.View.extend({
       this.newSesh.set({stakes: $('.stakesSelect').val()});
       this.newSesh.set({game: $('.gamesSelect').val()});
       this.newSesh.set({limitType: $('.limitSelect').val()});
-//TODO: turned off save for testing
-      // this.newSesh.save(null, {
-      //   success: function(newSesh) {
-      //     console.log('New session created with objectId: ' + newSesh.id);
-      //   },
-      //   error: function(newSesh, error) {
-      //     console.log('Failed to create new session, with error code: ' + error.description);
-      //   }
-      // });
+
+      this.newSesh.save(null, {
+        success: function(newSesh) {
+          console.log('New session created with objectId: ' + newSesh.id);
+        },
+        error: function(newSesh, error) {
+          console.log('Failed to create new session, with error code: ' + error.description);
+        }
+      });
     } else {
       this.inputError();
     }
@@ -114,19 +114,17 @@ var AddSessionView = Backbone.View.extend({
     this.newSesh.set({netProfit: profit});
 
     this.newSesh.trigger('formatData');
-//TODO: delete this line after testing is complete
-    this.collection.add(this.newSesh);
-//TODO: turned off save for testing
-    // var self = this;
-    // this.newSesh.save(null, {
-    //   success: function(newSesh) {
-    //     console.log('Session finalized with objectId: ' + newSesh.id);
-    //     self.collection.add(self.newSesh);
-    //   },
-    //   error: function(newSesh, error) {
-    //     console.log('Failed to finalize session, with error code: ' + error.description);
-    //   }
-    // });
+
+    var self = this;
+    this.newSesh.save(null, {
+      success: function(newSesh) {
+        console.log('Session finalized with objectId: ' + newSesh.id);
+        self.collection.add(self.newSesh);
+      },
+      error: function(newSesh, error) {
+        console.log('Failed to finalize session, with error code: ' + error.description);
+      }
+    });
   },
 
   startSeshEvents: function() {
@@ -163,7 +161,7 @@ var AddSessionView = Backbone.View.extend({
       this.newSesh.set({dateEndRaw: dt});
       this.newSesh.set({dateEnd: currentDate + ', ' + currentTime});
 //TODO: get rid of this time addition after testing
-      var t = this.newSesh.get('dateEndRaw').getTime() + (1000 * 4000) - this.newSesh.get('dateStartRaw').getTime(),
+      var t = this.newSesh.get('dateEndRaw').getTime() - this.newSesh.get('dateStartRaw').getTime(),
       t = this.formatHoursMin(t);
       this.newSesh.set({sessionLength: t});
     }
