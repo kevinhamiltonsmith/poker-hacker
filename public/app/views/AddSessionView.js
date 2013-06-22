@@ -130,10 +130,13 @@ var AddSessionView = Backbone.View.extend({
   },
 
   startSeshEvents: function() {
+    var self = this;
     $('.start-hide, .toggle-switch, .new-sesh-start-time input').hide();
     $('.session-submit-button').fadeOut('slow', function(){
-        $(this).removeClass('success').addClass('danger').fadeIn('slow');
-        $('.session-submit-button input').val('End Session');
+        if (self.isNewSession) {
+          $(this).removeClass('success').addClass('danger').fadeIn('slow');
+          $('.session-submit-button input').val('End Session');
+        }
       });
     $('.top-in-progress-alert, .new-sesh-cashout, .start-show, .new-sesh-start-time').fadeIn();
     $('.add-session-view form fieldset').addClass('session-in-progress');
