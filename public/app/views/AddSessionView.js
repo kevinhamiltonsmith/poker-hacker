@@ -68,9 +68,12 @@ var AddSessionView = Backbone.View.extend({
     if (this.isNewSession) {
       this.setTime(true);
     } else {
-      //format start time for sessions in the past
+      //format start and end times for sessions in the past
       var startDate = Date.parse($('#picker-start-date').val());
       this.setTime(true, startDate);
+      var endDate = Date.parse($('#picker-end-date').val());
+      this.setTime(false, endDate);
+      console.log(endDate)
     }
 
     this.newSesh.set({sessionId: this.collection.models.length + 1});
@@ -103,10 +106,6 @@ var AddSessionView = Backbone.View.extend({
   finalizeSesh: function() {
     if (this.isNewSession) {
       this.setTime(false);
-    } else {
-      //format end time for sessions in the past
-      var endDate = Date.parse($('#picker-end-date').val());
-      this.setTime(false, endDate);
     }
 
     var cashout = $('.cashout-input').val() ? parseInt($('.cashout-input').val()) : 0;
@@ -133,8 +132,10 @@ var AddSessionView = Backbone.View.extend({
   startSeshEvents: function() {
     $('.start-hide, .toggle-switch, .new-sesh-start-time input').hide();
     $('.session-submit-button').fadeOut('slow', function(){
-        $(this).removeClass('success').addClass('danger').fadeIn('slow');
-        $('.session-submit-button input').val('End Session');
+        if (this.isNewSession) {
+          $(this).removeClass('success').addClass('danger').fadeIn('slow');
+          $('.session-submit-button input').val('End Session');
+        }
       });
     $('.top-in-progress-alert, .new-sesh-cashout, .start-show, .new-sesh-start-time').fadeIn();
     $('.add-session-view form fieldset').addClass('session-in-progress');
