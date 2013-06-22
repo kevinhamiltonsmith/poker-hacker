@@ -34,11 +34,13 @@ var AddSessionView = Backbone.View.extend({
     }
   },
 
+  //live session toggle switch display properties
   liveGame: function() {
     $('.new-sesh-start-time').hide();
     $('.new-sesh-end-time').hide();
   },
 
+  //past session toggle switch display properties
   completedGame: function() {
     $('.new-sesh-start-time').show();
     $('.new-sesh-end-time').show();
@@ -51,11 +53,13 @@ var AddSessionView = Backbone.View.extend({
   createNewSesh: function() {
     this.newSesh = new Session();
 
+    //event handler for completion of createNewSesh function
     this.newSesh.on('change:limitType', function(){
       this.render().el;
       this.startSeshEvents();
     }, this);
 
+    //event handler for completion of finalizeSesh function
     this.newSesh.on('change:netProfit', function(){
       this.endRender();
       this.endSeshEvents();
@@ -64,8 +68,9 @@ var AddSessionView = Backbone.View.extend({
     if (this.isNewSession) {
       this.setTime(true);
     } else {
-      //format time for completed session in the past
-      this.setTime(true, true);
+      //format start time for sessions in the past
+      var startDate = Date.parse($('#picker-start-date').val());
+      this.setTime(true, startDate);
     }
 
     this.newSesh.set({sessionId: this.collection.models.length + 1});
@@ -89,13 +94,19 @@ var AddSessionView = Backbone.View.extend({
     } else {
       this.inputError();
     }
+
+    if (this.isNewSession === false) {
+      this.finalizeSesh();
+    }
   },
 
   finalizeSesh: function() {
     if (this.isNewSession) {
       this.setTime(false);
     } else {
-      this.setTime(true, true);
+      //format end time for sessions in the past
+      var endDate = Date.parse($('#picker-end-date').val());
+      this.setTime(false, endDate);
     }
 
     var cashout = $('.cashout-input').val() ? parseInt($('.cashout-input').val()) : 0;
@@ -135,10 +146,8 @@ var AddSessionView = Backbone.View.extend({
     $('.add-session-view form fieldset').removeClass('session-in-progress').addClass('session-complete');
   },
 
-  setTime: function(start, jsDate) {
-    if (jsDate) {
-      var dt = new Date(pickerDate);
-    } else {
+  setTime: function(start, dt) {
+    if (dt == undefined) {
       var dt = new Date();
     }
     var currentDate = dt.getMonth() + 1 + "/" + dt.getDate() + "/" + dt.getFullYear();
