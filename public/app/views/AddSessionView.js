@@ -150,6 +150,7 @@ var AddSessionView = Backbone.View.extend({
     if (dt == undefined) {
       var dt = new Date();
     }
+    
     var currentDate = dt.getMonth() + 1 + "/" + dt.getDate() + "/" + dt.getFullYear();
     var currentTime = this.formatAMPM(dt);
     if (start) {
