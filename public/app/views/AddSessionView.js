@@ -160,9 +160,13 @@ var AddSessionView = Backbone.View.extend({
     } else {
       this.newSesh.set({dateEndRaw: dt});
       this.newSesh.set({dateEnd: currentDate + ', ' + currentTime});
-//TODO: get rid of this time addition after testing
+
       var t = this.newSesh.get('dateEndRaw').getTime() - this.newSesh.get('dateStartRaw').getTime(),
       t = this.formatHoursMin(t);
+      //removes leading 0 in sessions < 10 hours
+      if (t.charAt(0) == '0') {
+        t = t.substr(1);
+      }
       this.newSesh.set({sessionLength: t});
     }
   },
