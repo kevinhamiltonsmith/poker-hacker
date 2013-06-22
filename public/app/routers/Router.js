@@ -14,7 +14,7 @@ var PokerHacker = Backbone.Router.extend({
     
     this.fetchCollection();
     this.appView = new AppView();
-    $('body').empty().append(this.appView.render());
+    $('body').empty().append('<div id="fb-root"></div>').append(this.appView.render());
   },
 
   start: function() {
@@ -34,7 +34,7 @@ var PokerHacker = Backbone.Router.extend({
   index: function() {
     this.indexView = new IndexView();
     $('.main-content').empty().append(this.indexView.render());
-    this.loginSidebar();
+    this.appSidebar();
   },
 
   sessionsNav: function() {
@@ -78,12 +78,8 @@ var PokerHacker = Backbone.Router.extend({
     this.appSidebar();
   },
 
-  loginSidebar: function() {
-    this.loginView = new LoginView();
-    $('.app-sidebar').empty().append(this.loginView.render());
-  },
-
   appSidebar: function() {
-    $('.app-sidebar').empty().append('<h4>Future Sidebar Content</h4>');
+    this.sidebarView = new SidebarView();
+    $('.app-sidebar').empty().append(this.sidebarView.render().el);
   }
 });

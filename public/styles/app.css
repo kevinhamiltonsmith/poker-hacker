@@ -34,8 +34,17 @@
 /*
 * Login
 */
-.sign-in-button {
+.login {
+  margin-top: 20px;
+}
+.sign-in-button, .sign-out-button {
   margin-top: 40px;
+  text-align: center;
+}
+.sign-out-button {
+  display: none;
+}
+.user-message {
   text-align: center;
 }
 
