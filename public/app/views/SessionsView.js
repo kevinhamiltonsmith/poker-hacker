@@ -10,8 +10,8 @@ var SessionsView = Backbone.View.extend({
           '<div class="sessions-location"><%= location %></div>'+
           '<div class="sessions-time"><%= sessionLength %></div>'+
           '<div class="clearfix"></div>' +
-          '<div class="sessions-game"><%= game %></div>' +
           '<div class="sessions-stakes"><%= stakes %></div>' +
+          '<div class="sessions-game"><%= game %></div>' +
           '<div class="sessions-date"><%= date %></div>'+
         '</div>' +
         '<div class="more-detail">' +
