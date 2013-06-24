@@ -24,12 +24,14 @@ var AppView = Backbone.View.extend({
         '<h3 class="four columns logo">' +
           '<a href="index.html" class="main-logo">Poker Hacker</a>' +
         '</h3>' +
-        '<ul class="eight columns ul-nav">' +
-          '<li><a href="index.html#session/all">All Sessions</a></li>' +
-          '<li><a href="index.html#overview">Overview</a></li>' +
-          '<li><a href="index.html#stats">Stats</a></li>' +
-          '<li><a href="index.html#newsession">New Session</a></li>' +
-        '</ul>' +
+        '<div class="logged-in-nav">' +
+          '<ul class="eight columns ul-nav">' +
+            '<li><a href="index.html#session/all">All Sessions</a></li>' +
+            '<li><a href="index.html#overview">Overview</a></li>' +
+            '<li><a href="index.html#stats">Stats</a></li>' +
+            '<li><a href="index.html#newsession">New Session</a></li>' +
+          '</ul>' +
+        '</div>' +
       '</div>' +
     '</div>' +
     '<div class="row container">' +
@@ -47,6 +49,11 @@ var AppView = Backbone.View.extend({
   ),
 
   initialize: function() {
+    $(document).on('fbInit', function(){
+      FB.Event.subscribe('auth.authResponseChange', function(response) {
+        $('.logged-in-nav').show();
+      });
+    });
   },
 
   render: function(){

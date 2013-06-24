@@ -6,6 +6,9 @@ var SidebarView = Backbone.View.extend({
   },
 
   template: _.template(''
+    // '<div class="new-session-button btn medium success metro">' +
+    //   '<input type="submit" value="New Session"></input>' +
+    // '</div>'
   ),
 
   initialize: function() {

@@ -16,6 +16,10 @@ var facebookInit = function() {
 
     // Additional initialization code such as adding Event Listeners goes here
     $(document).trigger('fbInit');
+
+    // FB.Event.subscribe('auth.authResponseChange', function(response) {
+    //   alert('The status of the session is: ' + response.status);
+    // });
   };
 
   // Load the SDK asynchronously
