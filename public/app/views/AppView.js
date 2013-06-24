@@ -50,8 +50,11 @@ var AppView = Backbone.View.extend({
 
   initialize: function() {
     $(document).on('fbInit', function(){
-      FB.Event.subscribe('auth.authResponseChange', function(response) {
+      FB.Event.subscribe('auth.login', function(response) {
         $('.logged-in-nav').show();
+      });
+      FB.Event.subscribe('auth.logout', function(response) {
+        $('.logged-in-nav').hide();
       });
     });
   },
