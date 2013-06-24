@@ -11,7 +11,9 @@ var PokerHacker = Backbone.Router.extend({
 
   initialize: function() {
     Parse.initialize("3fI4larsOgFFmf2wXb1NL9LWZHydgHZl5IGpV8fz", "Kg3zRBFWsyLb4gszNN3Yv4EK4nPoUN5wMdSo7RcT");
-    
+
+    this.startFB();
+
     this.fetchCollection();
     this.appView = new AppView();
     $('body').empty().append('<div id="fb-root"></div>').append(this.appView.render());
@@ -19,6 +21,10 @@ var PokerHacker = Backbone.Router.extend({
 
   start: function() {
     Backbone.history.start();
+  },
+
+  startFB: function() {
+    facebookInit();
   },
 
   fetchCollection: function() {
