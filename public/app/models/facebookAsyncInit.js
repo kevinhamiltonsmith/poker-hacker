@@ -8,7 +8,7 @@ var facebookInit = function() {
     // init the FB JS SDK
     FB.init({
       appId      : '478839102195567',
-      channelUrl : '//pokerhacker.herokuapp.com//channel.html',
+      channelUrl : '//localhost:5000/channel.html',
       status     : true,                                 // Check Facebook Login status
       cookie     : true,                                 // enable cookies to allow the server to access the session
       xfbml      : true                                  // Look for social plugins on the page
@@ -16,10 +16,6 @@ var facebookInit = function() {
 
     // Additional initialization code such as adding Event Listeners goes here
     $(document).trigger('fbInit');
-
-    // FB.Event.subscribe('auth.authResponseChange', function(response) {
-    //   alert('The status of the session is: ' + response.status);
-    // });
   };
 
   // Load the SDK asynchronously

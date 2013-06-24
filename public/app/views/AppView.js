@@ -56,6 +56,16 @@ var AppView = Backbone.View.extend({
       FB.Event.subscribe('auth.logout', function(response) {
         $('.logged-in-nav').hide();
       });
+      FB.Event.subscribe('auth.authResponseChange', function(response) {
+        FB.getLoginStatus(checkLoginStatus);
+        function checkLoginStatus(response) {
+          if(response && response.status == 'connected') {
+            $('.logged-in-nav').show();
+          } else {
+            $('.logged-in-nav').hide();
+          }
+        }
+      });
     });
   },
 
