@@ -1,10 +1,6 @@
 var OverviewChartView = Backbone.View.extend({
-  
-  className: 'overview-chart',
 
-  template: _.template(''+
-    ''
-  ),
+  className: 'overview-chart',
 
   initialize: function() {
     data = this.collection.profitData();
@@ -28,7 +24,7 @@ var OverviewChartView = Backbone.View.extend({
         .x(function(d, i) {
           return x(i);
         })
-        .y(y))
+        .y(y));
 
     var ticks = vis.selectAll('.ticky')
       .data(y.ticks(7))

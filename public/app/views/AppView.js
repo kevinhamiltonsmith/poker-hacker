@@ -2,6 +2,27 @@ var AppView = Backbone.View.extend({
 
   className: 'app',
 
+  initialize: function() {
+    $(document).on('fbInit', function(){
+      FB.Event.subscribe('auth.login', function(response) {
+        $('.logged-in-nav').show();
+      });
+      FB.Event.subscribe('auth.logout', function(response) {
+        $('.logged-in-nav').hide();
+      });
+      FB.Event.subscribe('auth.authResponseChange', function(response) {
+        FB.getLoginStatus(checkLoginStatus);
+        function checkLoginStatus(response) {
+          if(response && response.status == 'connected') {
+            $('.logged-in-nav').show();
+          } else {
+            $('.logged-in-nav').hide();
+          }
+        }
+      });
+    });
+  },
+
   template: _.template(''+
     '<div class="modal" id="modal1">' +
       '<div class="content">' +
@@ -47,27 +68,6 @@ var AppView = Backbone.View.extend({
       '</ul>' +
     '</div>'
   ),
-
-  initialize: function() {
-    $(document).on('fbInit', function(){
-      FB.Event.subscribe('auth.login', function(response) {
-        $('.logged-in-nav').show();
-      });
-      FB.Event.subscribe('auth.logout', function(response) {
-        $('.logged-in-nav').hide();
-      });
-      FB.Event.subscribe('auth.authResponseChange', function(response) {
-        FB.getLoginStatus(checkLoginStatus);
-        function checkLoginStatus(response) {
-          if(response && response.status == 'connected') {
-            $('.logged-in-nav').show();
-          } else {
-            $('.logged-in-nav').hide();
-          }
-        }
-      });
-    });
-  },
 
   render: function(){
     return this.$el.html(this.template());

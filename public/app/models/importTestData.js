@@ -1,6 +1,4 @@
-//quick and dirty import function for Poker Journal data
-
-console.log('TEST DATA')
+//import function for Poker Journal data
 var data = testData;
 
 Parse.initialize("3fI4larsOgFFmf2wXb1NL9LWZHydgHZl5IGpV8fz", "Kg3zRBFWsyLb4gszNN3Yv4EK4nPoUN5wMdSo7RcT");

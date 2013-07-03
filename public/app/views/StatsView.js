@@ -2,6 +2,13 @@ var StatsView = Backbone.View.extend({
 
   className: 'stats',
 
+  initialize: function() {
+    this.collection.on('sync', function(){
+      this.$el.empty();
+      $('.main-content').empty().append(this.render().el);
+    }, this);
+  },
+
   template: _.template(''+
     '<div class="row">' +
       '<div class="ten columns centered">' +
@@ -30,13 +37,6 @@ var StatsView = Backbone.View.extend({
       '</div>' +
     '</div>'
   ),
-
-  initialize: function() {
-    this.collection.on('sync', function(){
-      this.$el.empty();
-      $('.main-content').empty().append(this.render().el);
-    }, this);
-  },
 
   render: function(){
     var stats = {};

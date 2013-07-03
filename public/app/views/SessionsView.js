@@ -2,6 +2,24 @@ var SessionsView = Backbone.View.extend({
 
   className: 'sessions',
 
+  initialize: function() {
+    this.collection.on('sync', function(){
+      this.$el.empty();
+      $('.main-content').empty().append(this.render().el);
+    }, this);
+  },
+
+  events: {
+    "click .single-session-row" : function(event){
+      var id = $(event.currentTarget).data("session-id");
+      this.sessionNav(id);
+    }
+  },
+
+  sessionNav: function(id) {
+    pokerHacker.navigate('session/' + id, true);
+  },
+
   template: _.template(''+
     '<div class="row">' +
       '<div class="ten columns centered single-session-row" data-session-id=<%= sessionId %>>' +
@@ -21,20 +39,6 @@ var SessionsView = Backbone.View.extend({
     '</div>'
   ),
 
-  events: {
-    "click .single-session-row" : function(event){
-      var id = $(event.currentTarget).data("session-id");
-      this.sessionNav(id);
-    }
-  },
-
-  initialize: function() {
-    this.collection.on('sync', function(){
-      this.$el.empty();
-      $('.main-content').empty().append(this.render().el);
-    }, this);
-  },
-
   render: function(){
     var self = this;
     this.$el.append(
@@ -44,9 +48,5 @@ var SessionsView = Backbone.View.extend({
     );
     this.$el.prepend('<h3>Cash Game Session History</h3>');
     return this;
-  },
-
-  sessionNav: function(id) {
-    pokerHacker.navigate('session/' + id, true);
   }
 });

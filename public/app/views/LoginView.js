@@ -15,7 +15,7 @@ var LoginView = Backbone.View.extend({
             console.log('Welcome, ' + response.first_name + '.');
             $('.user-message').empty().append('<h5>Welcome, ' + response.first_name + '</h5>');
           });
-        } else {           
+        } else {
           console.log('User cancelled login or did not fully authorize.');
         }
       });
@@ -23,12 +23,11 @@ var LoginView = Backbone.View.extend({
   },
   signedOut: function(e) {
       FB.logout(function(response) {
-        console.log('You are logged out', response);
         $('.sign-out-button').hide();
         $('.user-message').empty().append('<h5>You have been signed out.</h5>');
         $('.sign-in-button').fadeIn('slow');
       });
-    return false; // e.preventDefault();
+    return false;
   },
   template: _.template(''+
     '<div class="user-message">' +
@@ -40,9 +39,6 @@ var LoginView = Backbone.View.extend({
       '<div class="btn medium primary metro icon-left entypo icon-facebook-squared"><a href="#">Sign Out</a></div>' +
     '</div>'
   ),
-
-  initialize: function() {
-  },
 
   render: function(){
     var self = this;
@@ -70,7 +66,6 @@ var LoginView = Backbone.View.extend({
         }
       }
     });
-
     return this;
   }
 });

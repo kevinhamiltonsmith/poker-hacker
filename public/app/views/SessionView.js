@@ -2,6 +2,25 @@ var SessionView = Backbone.View.extend({
 
   className: 'sesh',
 
+  events: {
+    "click .prev-sesh-nav a" : function(e){
+      e.preventDefault();
+      var seshId = Number(this.model.get('sessionId')) + 1;
+      this.sessionNav(seshId);
+    },
+
+    "click .all-sesh-nav a" : function(e){
+      e.preventDefault();
+      this.sessionNav("all");
+    },
+
+    "click .next-sesh-nav a" : function(e){
+      e.preventDefault();
+      var seshId = Number(this.model.get('sessionId')) - 1;
+      this.sessionNav(seshId);
+    }
+  },
+
   template: _.template(''+
     '<div class="row">' +
       '<div class="ten columns centered">' +
@@ -35,28 +54,6 @@ var SessionView = Backbone.View.extend({
       '</div>' +
     '</div>'
   ),
-
-  events: {
-    "click .prev-sesh-nav a" : function(e){
-      e.preventDefault();
-      var seshId = Number(this.model.get('sessionId')) + 1;
-      this.sessionNav(seshId);
-    },
-
-    "click .all-sesh-nav a" : function(e){
-      e.preventDefault();
-      this.sessionNav("all");
-    },
-
-    "click .next-sesh-nav a" : function(e){
-      e.preventDefault();
-      var seshId = Number(this.model.get('sessionId')) - 1;
-      this.sessionNav(seshId);
-    },
-  },
-
-  initialize: function() {
-  },
 
   render: function(){
     return this.$el.html(this.template(this.model.attributes));

@@ -2,6 +2,15 @@ var OverviewView = Backbone.View.extend({
 
   className: 'overview',
 
+  initialize: function() {
+    this.collection.on('sync', function(){
+      this.$el.empty();
+      this.overviewChartView = new OverviewChartView({collection: this.collection});
+      this.render().el;
+      $('.overview-chart-wrapper').empty().append(this.overviewChartView.render());
+    }, this);
+  },
+
   template: _.template(''+
     '<h3>All Results</h3>' +
     '<div class="overview-chart-wrapper"></div>' +
@@ -15,22 +24,12 @@ var OverviewView = Backbone.View.extend({
     '</table>'
   ),
 
-  initialize: function() {
-    this.collection.on('sync', function(){
-      this.$el.empty();
-      this.overviewChartView = new OverviewChartView({collection: this.collection});
-      this.render().el;
-      $('.overview-chart-wrapper').empty().append(this.overviewChartView.render());
-    }, this);
-  },
-
   render: function(){
     var overView = {};
 
     overView.numSessions = this.collection.totalSessions();
     overView.totalHours = this.collection.totalHours();
 
-//TODO: refactor below
     var totalWon = this.collection.totalWon();
     var winRate = this.collection.winRate();
     var winRateSesh = this.collection.winRateSesh();
