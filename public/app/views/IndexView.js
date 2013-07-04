@@ -8,7 +8,7 @@ var IndexView = Backbone.View.extend({
         '<h1>Hack Your<br>Poker Game</h1>' +
         '<div class="index-info">' +
           '<h4 style="color: red;">Currently in Private Beta Testing</h4>' +
-          '<p>Check back soon for version 1.0 of Poker Hacker!</p>' +
+          '<p>Check back soon for version 1.0 of Poker Hacker. Try the Tour mode!</p>' +
           '<h4>Powerful Session Tracking</h4>' +
           '<p>Live poker tracking, the way it should be: a simple to use interface, complete stats analysis, and no Excel spreadsheets.</p>' +
           '<h4>View on Any Device</h4>' +

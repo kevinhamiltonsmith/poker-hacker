@@ -3,8 +3,8 @@ var LoginView = Backbone.View.extend({
   className: 'login',
 
   events: {
-    'click .sign-out-button': 'signedOut',
-    'click .sign-in-button': 'signedIn'
+    // 'click .sign-out-button': 'signedOut'
+    // 'click .sign-in-button': 'signedIn'
   },
   signedIn: function(e) {
       FB.login(function(response) {
@@ -55,7 +55,6 @@ var LoginView = Backbone.View.extend({
           $('.sign-in-button').hide();
           $('.sign-out-button').show();
           FB.api('/me', function(response) {
-            // console.log('Welcome, ' + response.first_name + '.');
             $('.user-message').empty().append('<h5>Welcome, ' + response.first_name + '</h5>');
           });
         } else {

@@ -6,7 +6,12 @@ var PokerHacker = Backbone.Router.extend({
     "session/:id": "sessionNav",
     "overview": "overviewNav",
     "stats": "statsNav",
-    "newsession": "newSession"
+    "newsession": "newSession",
+    "tour/session/all": "tourSessionsNav",
+    "tour/session/:id": "tourSessionNav",
+    "tour/overview": "tourOverviewNav",
+    "tour/stats": "tourStatsNav",
+    "tour/newsession": "tourNewSession"
   },
 
   initialize: function() {
@@ -37,6 +42,7 @@ var PokerHacker = Backbone.Router.extend({
   index: function() {
     this.indexView = new IndexView();
     $('.main-content').empty().append(this.indexView.render());
+    $('.tour-nav, .top-in-progress-alert-tour').hide();
   },
 
   sessionsNav: function() {
@@ -76,7 +82,46 @@ var PokerHacker = Backbone.Router.extend({
   },
 
   appSidebar: function() {
-    this.sidebarView = new SidebarView();
+    this.sidebarView = new SidebarView({tour: false});
     $('.app-sidebar').empty().append(this.sidebarView.render().el);
+  },
+
+
+  //TOUR MODE
+  //Dublicate functions for app tour with test data
+  tourSessionsNav: function() {
+    this.sessionsView = new SessionsView({collection: this.sessions});
+    $('.main-content').empty().append(this.sessionsView.render().el);
+  },
+
+  tourSessionNav: function(id) {
+    var query = new Parse.Query(Session);
+    query.equalTo("sessionId", parseInt(id));
+    query.find({
+      success: function(results) {
+        // results[0].trigger('start');
+        this.session = results[0];
+        this.sessionView = new SessionView({model: this.session});
+        $('.main-content').empty().append(this.sessionView.render());
+      }
+    });
+  },
+
+  tourOverviewNav: function() {
+    this.overviewView = new OverviewView({collection: this.sessions});
+    $('.main-content').empty().append(this.overviewView.render().el);
+    this.overviewChartView = new OverviewChartView({collection: this.sessions});
+    $('.overview-chart-wrapper').empty().append(this.overviewChartView.render());
+  },
+
+  tourStatsNav: function() {
+    this.statsView = new StatsView({collection: this.sessions});
+    $('.main-content').empty().append(this.statsView.render().el);
+  },
+
+  tourNewSession: function() {
+    this.setupData = new SetupData(setupData);
+    this.addSessionView = new AddSessionView({model: this.setupData, collection: this.sessions});
+    $('.main-content').empty().append(this.addSessionView.render().el);
   }
 });

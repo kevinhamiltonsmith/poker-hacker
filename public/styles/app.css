@@ -18,6 +18,9 @@
   display: none;
   text-align: center;
 }
+.top-in-progress-alert-tour {
+  text-align: center;
+}
 .index-info {
   padding: 15px;
   margin-top: 30px;
@@ -40,13 +43,14 @@
 .login {
   margin-top: 20px;
 }
-.sign-in-button, .sign-out-button {
+.sign-in-button, .sign-out-button, .tour-button {
   margin-top: 40px;
   text-align: center;
 }
 .user-message {
   text-align: center;
 }
+
 
 /*
 * SessionsView list of all sessions
