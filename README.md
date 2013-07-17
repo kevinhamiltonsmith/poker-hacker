@@ -4,7 +4,7 @@
 
 ==================
 
-Poker Hacker provides live poker session tracking, statisctics, and visualizations for the serious poker player. Features include a list of all past poker sessions, drill-down detailed view of each game, results overview and graph with cumulative stats and streak information, the ability to log past sessions, and Facebook integration.
+Poker Hacker provides live poker session tracking, statistics, and visualizations for the serious poker player. Features include a list of all past poker sessions, drill-down detailed view of each game, results overview and graph with cumulative stats and streak information, the ability to log past sessions, and Facebook integration.
 
 It is designed with a mobile-first approach, using modern JavaScript frameworks.
 
